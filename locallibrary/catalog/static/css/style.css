@@ -1,0 +1,23 @@
+body{background-color: aquamarine;
+margin: 0 auto;
+width: 60%}
+
+
+ul{list-style: none;
+padding: 0;
+
+line-height: 1rem;
+background-color: bisque;}
+
+
+.book-title{
+    line-height: 1rem;
+    font-weight: 400;
+}
+
+.book-summary{
+    line-height: 1rem;
+    text-align: justify;
+    font-size: 0.8rem;
+}
+
