@@ -21,6 +21,7 @@ class BookList(ListView):
     context_object_name='book_list'
     queryset=models.Book.objects.all()[:10]
     template_name='book.html'
+    paginate_by = 2
 
     def get_context_data(self, **kwargs):
         #First get the existing context from our superclass.
@@ -38,8 +39,9 @@ class AuthorList(ListView):
     model=models.Author
     context_object_name='author_list'
     template_name='author.html'
+    paginate_by = 2
 
-    
+
 class AuthorDetail(DetailView):
     model=models.Author
     template_name='author-detail.html'
