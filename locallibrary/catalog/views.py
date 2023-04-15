@@ -1,8 +1,11 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from . import models
 
 # Create your views here.
+@login_required
 def home(request):
     num_books = models.Book.objects.all().count() # num_books = models.Book.objects.count() is also ok all() is implied by default
     num_instances=models.BookInstance.objects.all().count()
@@ -20,7 +23,7 @@ def home(request):
     }
     return render(request,'index.html',context=context)
 
-class BookList(ListView):
+class BookList(LoginRequiredMixin,ListView):
     model=models.Book
     context_object_name='book_list'
     queryset=models.Book.objects.all()[:10]
@@ -35,17 +38,17 @@ class BookList(ListView):
         #Then return the new (updated) context.
         return context
     
-class BookDetail(DetailView):
+class BookDetail(LoginRequiredMixin,DetailView):
     model= models.Book
     template_name='book-detail.html'    
 
-class AuthorList(ListView):
+class AuthorList(LoginRequiredMixin,ListView):
     model=models.Author
     context_object_name='author_list'
     template_name='author.html'
     paginate_by = 2
 
 
-class AuthorDetail(DetailView):
+class AuthorDetail(LoginRequiredMixin,DetailView):
     model=models.Author
     template_name='author-detail.html'
