@@ -16,4 +16,12 @@
     {% else %}
       <p>There are no books borrowed.</p>
     {% endif %}
+
+    {% if perms.catalog.can_mark_returned %}
+    <!-- We can mark a BookInstance as returned. -->
+    <!-- Perhaps add code to link to a "book return" view here. -->
+
+    <p>REturned</p>
+{% endif %}
+
 {% endblock %}

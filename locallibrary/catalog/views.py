@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.contrib.auth.decorators import permission_required
 from . import models
 
 # Create your views here.
@@ -28,7 +30,7 @@ class BookList(LoginRequiredMixin,ListView):
     context_object_name='book_list'
     queryset=models.Book.objects.all()[:10]
     template_name='book.html'
-    paginate_by = 2
+    paginate_by = 5
 
     def get_context_data(self, **kwargs):
         #First get the existing context from our superclass.
@@ -46,7 +48,7 @@ class AuthorList(LoginRequiredMixin,ListView):
     model=models.Author
     context_object_name='author_list'
     template_name='author.html'
-    paginate_by = 2
+    paginate_by = 5
 
 
 class AuthorDetail(LoginRequiredMixin,DetailView):
@@ -57,10 +59,21 @@ class LoanedBooksByUserListView(LoginRequiredMixin,ListView):
     """Generic class-based view listing books on loan to current user."""
     model = models.BookInstance
     template_name = 'bookinstance_list_borrowed_user.html'
-    paginate_by = 10
+    paginate_by = 5
     #context_object_name='bookinstance_list'
 
 
     def get_queryset(self):
         context = (models.BookInstance.objects.filter(borrower=self.request.user).filter(status='o').order_by('due_back'))
         return context
+    
+class BorrowedBooksList(LoginRequiredMixin,PermissionRequiredMixin,ListView):
+    model=models.BookInstance
+    template_name='borrowed_books.html'
+    paginated_by= 5
+    permission_required = 'catalog.can_mark_returned'
+
+    def get_queryset(self):
+        context = (models.BookInstance.objects.filter(status='o').order_by('due_back'))
+        return context
+

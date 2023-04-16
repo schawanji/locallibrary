@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %} <title>Borrowed Books</title> {% endblock %}
+
+{% block content %}
+
+{% for bookinst in object_list %}
+
+<ul>
+    
+<li>{{ bookinst.book.title }}</li>
+<li>{{ bookinst.due_back }}</li>
+<li>{{ bookinst.borrower }}</li>
+</ul>
+
+{% endfor %}
+
+{% endblock %}
