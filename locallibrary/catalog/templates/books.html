@@ -11,7 +11,8 @@
     <li class="book-summary">{{ book.summary }}</li>
     <li class="book-isbn">{{ book.isbn }}</li>
     <li class="book-genre">{{ book.genre.all|join:", " }}</li>
-    <li>{{ book.some_data}}</li>
+    <button><a href="{% url 'book-update' book.pk %}">Update Book Information</a></button>
+    <button><a href="{% url 'book-delete' book.pk %}">Delete Book Information</a></button>
 </ul>
 
 {% empty %}

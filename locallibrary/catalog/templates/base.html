@@ -13,6 +13,8 @@
      <li>Hi {{ user.get_username }} nice to see you again</li>
      <li><a href="{% url 'my-borrowed' %}">My Borrowed</a></li>
      <li><a href="{% url 'borrowed-books' %}">Borrowed Books</a></li>
+     <li><a href="{% url 'author-create' %}">Add New Author</a></li>
+     <li><a href="{% url 'book-create' %}">Add New Book</a></li>
      <li><a href="{% url 'logout' %}?next={{ request.path }}">Logout</a></li>
    {% else %}
      <li><a href="{% url 'login' %}?next={{ request.path }}">Login</a></li>
