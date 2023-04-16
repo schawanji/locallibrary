@@ -7,7 +7,7 @@ It has a catalogue app
 
 # To use app 
 
-'''
+'''bash
 
 git clone https://github.com/schawanji/locallibrary.git
 activate virtual environment
