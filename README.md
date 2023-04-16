@@ -20,5 +20,5 @@ python3 manage.py  runserver
 App is running on http://localhost:8081/catalog/ 
 
 username: admin
-password:admin
+password_
 
