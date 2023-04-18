@@ -8,18 +8,24 @@ It has a catalogue app
 # To use app 
 
 ```bash
+# activate virtual environment Windows
+
+python3 -mvenv djangoenv
+cd djangoenv/Scripts
+activate 
+
+# 
 
 git clone https://github.com/schawanji/locallibrary.git
+cd locallibrary\locallibrary
 
-#activate virtual environment
-
-pip3 install requirements.txt
+pip3 install -r requirements.txt
 python3 manage.py  makemigrations
 python3 manage.py  migrate
-python3 manage.py  runserver
+python3 manage.py  runserver 8081
 ```
 App is running on http://localhost:8081/catalog/ 
 
 username: admin
-password: admin
+password: hp
 
