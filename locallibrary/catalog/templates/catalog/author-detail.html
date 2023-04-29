@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %} <title>{{author.first_name}}{{author.last_name}}</title> {% endblock %}
+
+
+
+{% block content %}
+<h1>This book was written by {{ author.first_name }}</h1>
+<p>Born on: {{ author.date_of_death }}</p>
+
+<ul>
+    {% for book in books %}
+    <li> {{ book.author }}</li>
+   
+    <li> <a href="{% url 'book-update' book.pk %}">{{ book.title }}</a></li>
+    {% endfor %}
+</ul>
+
+<button><a href="{% url 'author-update' author.pk %}">Update Author Information</a></button>
+<button><a href="{% url 'author-delete' author.pk %}">Delete Author Information</a></button>
+{% endblock %}

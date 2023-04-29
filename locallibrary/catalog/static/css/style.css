@@ -1,24 +1,40 @@
-body{background-color: aquamarine;
-margin: 0 auto;
-width: 60%}
+body {
+    background-color: aquamarine;
+    margin: 0 auto;
+    width: 60%
+}
 
 
-ul{list-style: none;
-padding: 0;
+ul {
+    list-style: none;
+    padding: 0;
 
-line-height: 1rem;
-background-color: bisque;}
+    line-height: 1rem;
+    
+}
 
+.hero{
+background-image: url('catalog\static\ben-white-4K2lIP0zc_k-unsplash.jpg');
+   
+}
 
-.book-title{
+.book-title {
     line-height: 1rem;
     font-weight: 400;
 }
 
-.book-summary{
+.book-summary {
     line-height: 1rem;
     text-align: justify;
     font-size: 0.8rem;
 }
 
-.text-danger{color:red}
+.text-danger {
+    color: red
+}
+
+.logo {
+    list-style: none;
+    display: flex;
+    justify-items: end;
+}

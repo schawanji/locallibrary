@@ -36,9 +36,7 @@ def home(request):
 
 class BookList(LoginRequiredMixin,ListView):
     model=models.Book
-    context_object_name='book_list'
     queryset=models.Book.objects.all()[:10]
-    template_name='books.html'
     paginate_by = 5
 
     def get_context_data(self, **kwargs):
@@ -51,24 +49,39 @@ class BookList(LoginRequiredMixin,ListView):
     
 class BookDetail(LoginRequiredMixin,DetailView):
     model= models.Book
-    template_name='book-detail.html'    
+    template_name='catalog/book-detail.html'    
 
-class AuthorList(LoginRequiredMixin,ListView):
+#class AuthorList(LoginRequiredMixin,ListView):
+class AuthorList(ListView):
     model=models.Author
-    context_object_name='author_list'
-    template_name='authors.html'
-    paginate_by = 5
+    paginate_by = 10
+    
 
 
 class AuthorDetail(LoginRequiredMixin,DetailView):
     model=models.Author
-    template_name='author-detail.html'
+    template_name='catalog/author-detail.html'
+    
+
+    def get_queryset(self):
+        pk = self.kwargs['pk']
+        return models.Book.objects.filter(author__pk=pk).order_by('title')
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        pk = self.kwargs['pk']
+        
+        context['books'] = models.Book.objects.filter(author__pk=pk)
+        #context['author'] = self.object  # add the Author object to the context
+        #print(context['author'])
+        #context['books'] = self.get_queryset()  # add the filtered Book queryset to the context
+        return context
 
 class LoanedBooksByUserListView(LoginRequiredMixin,ListView):
     """Generic class-based view listing books on loan to current user."""
     model = models.BookInstance
-    template_name = 'bookinstance_list_borrowed_user.html'
-    paginate_by = 5
+    template_name = 'catalog/bookinstance_list_borrowed_user.html'
+    paginate_by = 10
     #context_object_name='bookinstance_list'
 
 
@@ -78,8 +91,8 @@ class LoanedBooksByUserListView(LoginRequiredMixin,ListView):
     
 class BorrowedBooksList(LoginRequiredMixin,PermissionRequiredMixin,ListView):
     model=models.BookInstance
-    template_name='borrowed_books.html'
-    paginated_by= 5
+    template_name='catalog/bookinstance_list_borrowed_all.html'
+    paginated_by= 10
     permission_required = 'catalog.can_mark_returned'
 
     def get_queryset(self):
@@ -99,7 +112,7 @@ def renew_book_librarian(request,pk):
             book_instance.save()
 
             # redirect to a new URL:
-            return HttpResponseRedirect(reverse('borrowed-books'))
+            return HttpResponseRedirect(reverse('all-borrowed'))
         # If this is a GET (or any other method) create the default form.
     else:
         proposed_renewal_date = datetime.date.today() + datetime.timedelta(weeks=3)
@@ -110,19 +123,19 @@ def renew_book_librarian(request,pk):
         'book_instance': book_instance,
     }
 
-    return render(request, 'book_renew_librarian.html', context)
+    return render(request, 'catalog/book_renew_librarian.html', context)
 
 
 class AuthorFormCreate(LoginRequiredMixin,PermissionRequiredMixin,CreateView):
     model = models.Author
-    template_name='authour_form_create.html'
+    template_name='catalog/authour_form_create.html'
     permission_required = 'catalog.can_mark_returned'
     fields=['first_name','last_name','date_of_birth','date_of_death']
 
 
 class AuthorFormUpdate(LoginRequiredMixin,PermissionRequiredMixin,UpdateView):
     model = models.Author
-    template_name='authour_form_create.html'
+    template_name='catalog/authour_form_create.html'
     permission_required = 'catalog.can_mark_returned'
     fields=['first_name','last_name','date_of_birth','date_of_death']
 
@@ -132,28 +145,42 @@ class AuthorFormDelete(LoginRequiredMixin,PermissionRequiredMixin,DeleteView):
     permission_required = 'catalog.can_mark_returned'
     #reverse_lazy() is a lazily executed version of reverse(), used here because we're providing a URL to a class-based view attribute.
     success_url = reverse_lazy('authors')
-    template_name='author_confirm_delete.html'
+    template_name='catalog/author_confirm_delete.html'
 
 
 
 class BookFormCreate(LoginRequiredMixin,PermissionRequiredMixin,CreateView):
     model = models.Book
-    template_name='book_form_create.html'
+    template_name='catalog/book_form_create.html'
     permission_required = 'catalog.can_mark_returned'
-    fields=['title', 'author','summary','isbn','genre']        
+    fields=['title', 'author','summary','isbn','genre','language']        
 
 
 
 class BookFormUpdate(LoginRequiredMixin,PermissionRequiredMixin,UpdateView):
     model = models.Book
-    template_name='book_form_create.html'
+    template_name='catalog/book_form_create.html'
     permission_required = 'catalog.can_mark_returned'
-    fields=['title', 'author','summary','isbn','genre'] 
+    fields=['title', 'author','summary','isbn','genre','language'] 
 
 
 class BookFormDelete(LoginRequiredMixin,PermissionRequiredMixin,DeleteView):
     model = models.Book
-    template_name='book_confirm_delete.html'
+    template_name='catalog/book_confirm_delete.html'
     permission_required = 'catalog.can_mark_returned'
     success_url = reverse_lazy('books')
    
+
+class BooksByAuthorListView(ListView):
+    """
+    View class for displaying a list of books written by a specific author.
+    """
+    template_name = 'catalog/books_by_author.html'
+    context_object_name = 'books'
+
+    def get_queryset(self):
+        pk = self.kwargs['pk']
+        #return models.Book.objects.filter(author__pk=pk)
+        return models.Book.objects.select_related('author').all()
+
+      

@@ -1,54 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    {% load static %}
+  {% load static %}
   {% block title %}<title>Local Library</title>{% endblock %}
 
   <link rel="stylesheet" href="{% static 'css/style.css'%}">
 </head>
-<body>
-  <h1>Local Library Home</h1> 
-  <div>
-    {% if user.is_authenticated %}
-     <li>Hi {{ user.get_username }} nice to see you again</li>
-     <li><a href="{% url 'my-borrowed' %}">My Borrowed</a></li>
-     <li><a href="{% url 'borrowed-books' %}">Borrowed Books</a></li>
-     <li><a href="{% url 'author-create' %}">Add New Author</a></li>
-     <li><a href="{% url 'book-create' %}">Add New Book</a></li>
-     <li><a href="{% url 'logout' %}?next={{ request.path }}">Logout</a></li>
-   {% else %}
-     <li><a href="{% url 'login' %}?next={{ request.path }}">Login</a></li>
 
-   {% endif %}
-  </div>
-  <p>Welcome to LocalLibrary, a website developed by <em>Mozilla Developer Network</em>!</p>
-  
-  <ul>
-    <li><a href="{% url 'home' %}"> Home</a></li>
-    <li><a href="{% url 'books' %}">Books</a></li>
-    <li><a href="{% url 'authors' %}">Authors</a></li>
-  </ul>
-  
-  
-  {% block sidebar %}<!-- insert default navigation text for every page -->{% endblock %}
-  {% block content %}<!-- default content text (typically empty) -->{% endblock %}
-  {% block pagination %}
+<body>
+  <header>
+
+    <ul class="logo">
+      <li>LocalLibrary</li>
+      <li><a>Login</a>/<a>Register</a></li>
+    </ul>
+
+    <div class="hero">
+      <div>Expand your knowledge </div>
+      <div>improve yourself</div>
+      <div>
+        <form action="">
+          <input type="search" name="" id=""> 
+          <input type="submit" name="" id="" placeholder="Search">
+        </form>
+      </div>
+    </div>
+
+    {% if user.is_authenticated %}
+   
+    <nav>
+      <ul>
+        <li><a href="{% url 'home' %}"> Home</a></li>
+        <li><a href="{% url 'books' %}">Books</a></li>
+        <li><a href="{% url 'authors' %}">Authors</a></li>
+      </ul>
+    </nav>
+   
+    <h1 class="welcome-message">Hi ✋🏿 <strong>{{ user.get_username }}</strong> nice to see you again</h1>
+    <nav>
+      <div class="menu">
+        <ul>
+          <li><a href="{% url 'my-borrowed' %}" class="active">My Borrowed</a></li>
+          <li><a href="{% url 'all-borrowed' %}">All Borrowed Books</a></li>
+          <li><a href="{% url 'author-create' %}">Add New Author</a></li>
+          <li><a href="{% url 'book-create' %}">Add New Book</a></li>
+          <li><a href="{% url 'logout' %}?next={{ request.path }}">Logout</a></li>
+
+          {% else %}
+          <li><a href="{% url 'admin:index' %}">Admin Page</a></li>
+          <li><a href="{% url 'login' %}?next={{ request.path }}">Login</a></li>
+
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
+
+    {% block sidebar %}<!-- insert default navigation text for every page -->{% endblock %}
+    {% block content %}<!-- default content text (typically empty) -->{% endblock %}
+    {% block pagination %}
     {% if is_paginated %}
-        <div class="pagination">
-            <span class="page-links">
-                {% if page_obj.has_previous %}
-                    <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
-                {% endif %}
-                <span class="page-current">
-                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-                </span>
-                {% if page_obj.has_next %}
-                    <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
-                {% endif %}
-            </span>
-        </div>
+    <div class="pagination">
+      <span class="page-links">
+        {% if page_obj.has_previous %}
+        <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+        <span class="page-current">
+          Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+        {% if page_obj.has_next %}
+        <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
+        {% endif %}
+      </span>
+    </div>
     {% endif %}
-  {% endblock %}
+    {% endblock %}
+
+  </header>
+
 
 </body>
+
 </html>

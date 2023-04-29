@@ -30,4 +30,4 @@ class AuthorForm(forms.ModelForm):
 class BookForm(forms.ModelForm):
     class Meta:
         model=models.Book
-        fields=['title', 'author','summary','isbn','genre']        
+        fields=['title','summary','isbn','genre']        

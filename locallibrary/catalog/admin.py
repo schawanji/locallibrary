@@ -13,7 +13,7 @@ class AuthorAdmin(admin.ModelAdmin):
     list_display = ('last_name', 'first_name', 'date_of_birth', 'date_of_death')
     fields = ['first_name', 'last_name', ('date_of_birth', 'date_of_death')]
     # Add inline listing of Books to author
-    inlines=[BookInline]
+   # inlines=[BookInline]
 
 # Register the admin class with the associated model
 
@@ -24,7 +24,7 @@ class BooksInstanceInline(admin.TabularInline):
 
 class BookAdmin(admin.ModelAdmin):
     #Adds aditional lists to the view
-    list_display = ('title', 'author','display_genre')
+    list_display = ('title','display_genre','language')
     inlines = [BooksInstanceInline]
 
 admin.site.register(models.Book,BookAdmin)

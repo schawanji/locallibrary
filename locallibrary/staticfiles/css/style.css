@@ -1,0 +1,117 @@
+body {
+    background-color: aquamarine;
+    margin: 0 auto;
+    width: 60%
+}
+
+
+
+.book-title {
+    line-height: 1rem;
+    font-weight: 400;
+}
+
+.book-summary {
+    line-height: 1rem;
+    text-align: justify;
+    font-size: 0.8rem;
+}
+
+.text-danger {
+    color: red
+}
+
+
+header {
+    background-color: #333;
+    /* Set the background color */
+    color: #fff;
+    /* Set the text color */
+    padding: 10px;
+    /* Add some padding */
+}
+
+nav {
+    display: flex;
+    /* Set items to display in a row */
+    justify-content: space-between;
+    /* Distribute items evenly */
+    align-items: center;
+    /* Center items vertically */
+}
+
+ a {
+    font-size: 24px;
+    /* Set the font size */
+    font-weight: bold;
+    /* Set the font weight */
+    color: #fff;
+    /* Set the text color */
+    text-decoration: none;
+    /* Remove underlines */
+}
+
+.menu ul {
+    list-style: none;
+    /* Remove bullets */
+    margin: 0;
+    /* Remove default margin */
+    padding: 0;
+    /* Remove default padding */
+}
+
+.menu ul li {
+    display: inline-block;
+    /* Set to display inline */
+    margin-right: 20px;
+    /* Add some spacing between items */
+}
+
+.menu ul li a {
+    color: #fff;
+    /* Set the text color */
+    text-decoration: none;
+    /* Remove underlines */
+    font-size: 18px;
+    /* Set the font size */
+    padding: 10px;
+    /* Add some padding */
+}
+
+.menu ul li a:hover {
+    background-color: #555;
+    /* Set the background color */
+}
+
+.dropdown-content {
+    display: none;
+    /* Hide the dropdown content */
+    position: absolute;
+    /* Set the position */
+    background-color: #f9f9f9;
+    /* Set the background color */
+    min-width: 160px;
+    /* Set the minimum width */
+    z-index: 1;
+    /* Set the z-index */
+    padding: 10px;
+    /* Add some padding */
+    margin-top: 5px;
+    /* Add some spacing */
+}
+
+.dropdown-content a {
+    color: #333;
+    /* Set the text color */
+    text-decoration: none;
+    /* Remove underlines */
+    display: block;
+    /* Set to display in a block */
+    padding: 5px 0;
+    /* Add some padding */
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+    /* Show the dropdown content on hover */
+}
