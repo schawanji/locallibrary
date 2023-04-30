@@ -1,15 +1,72 @@
 {% extends 'base.html' %}
 
-{% block title %} <title>Books I have read</title> {% endblock %}
 {% block content %}
+
+
+<div class="hero">
+   <h1>Welcome to the Local Library</h1>
+   <div>Expand your knowledge | Improve yourself</div>
+   
+   <div>
+      <form method="GET" >
+         <input type="text" name="query" value="{{ query }}" id="query">
+         <button type="submit">Search...</button>
+      </form>
+   </div>
+</div>
+<hr>
+<div class="general-content">
   
-  <h2>General content</h2>
-  <p>The library has the following record counts:</p>
-  <ul>
-    <li><strong>Books:</strong> {{ num_books }}</li>
-    <li><strong>Copies:</strong> {{ num_instances }}</li>
-    <li><strong>Copies available:</strong> {{ num_instances_available }}</li>
-    <li><strong>Authors:</strong> {{ num_authors }}</li>
-  </ul>
-  <p>You have visited this page {{ num_visits }} time{{ num_visits|pluralize }}.</p>
-  {% endblock %}
+   <p>The library has the following record counts:</p>
+   <ul>
+      <li><strong>Books:</strong> {{ num_books }}</li>
+      <li><strong>Copies:</strong> {{ num_instances }}</li>
+      <li><strong>Copies available:</strong> {{ num_instances_available }}</li>
+      <li><strong>Authors:</strong> {{ num_authors }}</li>
+   </ul>
+   </div>
+   <hr>
+
+
+{% if query %}
+  <h2>Search results for "{{ query }}"</h2>
+  {% if books %}
+  <div class="books-list">
+    {% for book in books %}
+      
+
+<div class="book">
+   <h2>{{ book.title }}</h2>
+   <p>Author: {{ book.author }}</p>
+   <p>Published: {{ book.published_date }}</p>
+   <p>ISBN: {{ book.isbn }}</p>
+   <img src="{{ book.image.url }}" alt="" srcset="">
+</div>
+
+    {% endfor %}
+</div>
+  {% else %}
+    <p>No results found.</p>
+  {% endif %}
+
+{% else %}
+
+  <h2>New books at the library</h2>
+  <div class="books-list">
+  {% for book in all_books %}
+   
+
+<div class="book">
+   <h2>{{ book.title }}</h2>
+   <p>Author: {{ book.author }}</p>
+   <p>Published: {{ book.published_date }}</p>
+   <p>ISBN: {{ book.isbn }}</p>
+   <img src="{{ book.image.url }}" alt="" srcset="">
+</div>
+
+  {% endfor %}
+</div >
+{% endif %}
+<div class="all-books"><a class="btn" href="{% url 'books' %}">Browse all titles </a></div>
+<p>You have visited this page {{ num_visits }} time{{ num_visits|pluralize }}.</p>
+{% endblock %}

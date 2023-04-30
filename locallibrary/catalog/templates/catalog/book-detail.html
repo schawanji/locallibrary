@@ -11,12 +11,16 @@
     <li class="book-isbn">isbn: {{ book.isbn }}</li>
     <li class="book-language">{{ book.language }}</li>
     <li class="book-genre">{{ book.genre.all|join:", " }}</li>
-    <li>{{ book.some_data}}</li>
+    <li><a href="" class="btn">Borrow</a> <a href="{{ book.author.get_absolute_url }}" class="btn">About author</a></li>
 </ul>
 <hr>
+<div><a href="{% url 'books' %}" class="btn"> Go back to list of all books</a></div>
+{% if perms.catalog.can_mark_returned %}
 <button><a href="{% url 'book-update' book.pk %}">Update Book Information</a></button>
 <button><a href="{% url 'book-delete' book.pk %}">Delete Book Information</a></button>
 <hr>
+
+
 <h2>Copies</h2>
 
 <h3>{{ copy.get_status }}</h3>
@@ -34,5 +38,5 @@
 
 
 {% endfor %}
-
+{% endif %}
 {% endblock %}

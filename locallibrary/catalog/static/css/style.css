@@ -1,7 +1,9 @@
 body {
     background-color: aquamarine;
     margin: 0 auto;
-    width: 60%
+    width: 60%;
+    line-height: 1.1rem;
+    
 }
 
 
@@ -13,12 +15,86 @@ ul {
     
 }
 
-.hero{
-background-image: url('catalog\static\ben-white-4K2lIP0zc_k-unsplash.jpg');
-   
+h1{
+    text-align: center;
 }
 
-.book-title {
+a{
+    text-decoration: none;
+}
+
+a:hover{
+    color: red;
+}
+.hero{
+    /*background-image: url('/static/img/ben-white-4K2lIP0zc_k-unsplash.jpg');*/
+    background-color: #cccccc;
+    background-size: cover;
+    height: 30vh;
+    text-align: center;
+    line-height: 3rem;
+    }
+
+    .logo {
+        list-style: none;
+        display: flex;
+        justify-content:space-between;
+    }
+    
+    .books-list{
+
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        
+
+        }
+
+        .btn{
+            background-color: gold;
+        border-color: black;
+        border-radius: 5%;
+        margin-left: 1rem;
+        
+            
+        }
+     .all-books{text-align: center;}
+
+     .general-content{
+        text-align: center;
+     }
+     .general-content ul{
+        display: flex;
+        margin: 0 auto;
+        padding: 0 auto;
+     }
+
+     .general-content li{
+        margin: 0 auto;
+        padding: 2rem;
+     }
+
+     .menu ul{
+        display: flex;
+        margin: 0 auto;
+        padding: 0 auto;
+     }
+     .menu li{
+        margin: 0 auto;
+        padding: 2rem;
+     }
+
+     ul .book-genre{
+        
+        color: #000;
+     }
+
+     .book li{
+        margin: 1rem;
+     }
+
+     .pagination{text-align: center;}
+     .text-danger{color: red;}
+/*.book-title {
     line-height: 1rem;
     font-weight: 400;
 }
@@ -33,8 +109,11 @@ background-image: url('catalog\static\ben-white-4K2lIP0zc_k-unsplash.jpg');
     color: red
 }
 
-.logo {
-    list-style: none;
-    display: flex;
-    justify-items: end;
+
+s
+.menu li{
+    padding: 1rem;
+}
+.menu a{
+    text-decoration: none;
 }

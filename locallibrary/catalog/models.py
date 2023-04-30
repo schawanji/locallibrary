@@ -35,6 +35,7 @@ class Book(models.Model):
     # Genre class has already been defined so we can specify the object above.
     genre = models.ManyToManyField(Genre, help_text='Select a genre for this book')
     language =models.ForeignKey(Language,on_delete=models.PROTECT,null=True,blank=True)
+    image = models.ImageField(upload_to='images/',null=True)
 
     class Meta:
         verbose_name = 'book'

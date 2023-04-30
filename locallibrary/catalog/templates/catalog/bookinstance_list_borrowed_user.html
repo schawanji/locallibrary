@@ -1,15 +1,24 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Borrowed books</h1>
+    <h2>Here is a list of your borrowed books</h2>
 
     {% if bookinstance_list %}
     <ul>
 
       {% for bookinst in bookinstance_list %}
+      <li> <img src="{{ bookinst.book.image.url }}" alt="" srcset=""></li>
       <li class="{% if bookinst.is_overdue %}text-danger{% endif %}">
-        <a href="{% url 'book-detail' bookinst.book.pk %}">{{ bookinst.book.title }}</a> ({{ bookinst.due_back }})
+        <a href="{% url 'book-detail' bookinst.book.pk %}">{{ bookinst.book.title }}</a> 
       </li>
+      <li><a href="{% url 'book-detail' bookinst.book.pk %}">{{ bookinst.book.author }}</a></li>
+      {% if bookinst.is_overdue %}
+      <li class="{% if bookinst.is_overdue %}text-danger{% endif %}">Due back: ({{ bookinst.due_back }})</li>
+      <li class="{% if bookinst.is_overdue %}text-danger{% endif %}"> &#9888; You are way over due please return book to avoid incurring a fine</li>
+
+{% else %}
+<li class="{% if bookinst.is_overdue %}text-danger{% endif %}">Due back: ({{ bookinst.due_back }})</li>
+      {% endif %}
       {% endfor %}
     </ul>
 

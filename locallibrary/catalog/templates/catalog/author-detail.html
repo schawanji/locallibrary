@@ -5,12 +5,14 @@
 
 
 {% block content %}
-<h1>This book was written by {{ author.first_name }}</h1>
+<p></p>
+<p>{{ author.first_name }}</p>
+<p>{{ author.last_name }}</p>
 <p>Born on: {{ author.date_of_death }}</p>
-
+<p><a href="{% url 'author-books' author.pk   %}">Other Books by Author</a></p>
 <ul>
     {% for book in books %}
-    <li> {{ book.author }}</li>
+    
    
     <li> <a href="{% url 'book-update' book.pk %}">{{ book.title }}</a></li>
     {% endfor %}

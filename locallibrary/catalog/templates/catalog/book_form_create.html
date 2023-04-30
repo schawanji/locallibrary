@@ -4,7 +4,8 @@
 
 {% block content %}
 <h2>Add New Book</h2>
-<form action="" method="post">
+Add authour first if not in the list
+<form action="" method="post" enctype="multipart/form-data">
 
     {% csrf_token %}
 {{ form.as_p }}

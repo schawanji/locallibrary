@@ -6,56 +6,52 @@
   {% block title %}<title>Local Library</title>{% endblock %}
 
   <link rel="stylesheet" href="{% static 'css/style.css'%}">
+
 </head>
 
 <body>
   <header>
 
     <ul class="logo">
-      <li>LocalLibrary</li>
-      <li><a>Login</a>/<a>Register</a></li>
+      <li><a href="{% url 'home' %}">LocalLibrary</a> </li>
+
+  {% if user.is_authenticated %}
+      <li>
+        <div class="welcome-message">Hi ✋🏿 <strong>{{ user.get_username }}</strong></div>
+        <a href="{% url 'logout' %}?next={{ request.path }}">Logout</a>
+      </li>
+      
     </ul>
 
-    <div class="hero">
-      <div>Expand your knowledge </div>
-      <div>improve yourself</div>
-      <div>
-        <form action="">
-          <input type="search" name="" id=""> 
-          <input type="submit" name="" id="" placeholder="Search">
-        </form>
-      </div>
-    </div>
-
-    {% if user.is_authenticated %}
    
-    <nav>
-      <ul>
-        <li><a href="{% url 'home' %}"> Home</a></li>
-        <li><a href="{% url 'books' %}">Books</a></li>
-        <li><a href="{% url 'authors' %}">Authors</a></li>
-      </ul>
-    </nav>
+      <nav>
+        <div class="menu">
+          <ul>
+            <li><a href="{% url 'home' %}">Home</a> </li>
+            <li><a href="{% url 'my-borrowed' %}" class="active">My Borrowed</a></li>
+            <li><a href="{% url 'books' %}">Books</a> </li>
+            <li><a href="{% url 'authors' %}">Authors</a> </li>
+            {% if perms.catalog.can_mark_returned %}
+            <ul class="manage-catalogue">
+            <li><a href="{% url 'all-borrowed' %}">All Borrowed Books</a></li>
+            <li><a href="{% url 'author-create' %}">Add New Author</a></li>
+            <li><a href="{% url 'book-create' %}">Add New Book</a></li>
+            <li><a href="{% url 'admin:index' %}">Admin Page</a></li>
+          </ul>
+            {% endif %}
+          </ul>
+        </div>
+      </nav>
+  {% else %}
+   <li><a href="{% url 'login' %}?next={{ request.path }}">Login</a>/<a>Register</a></li>
+      
+    </ul>
+{% endif %}
    
-    <h1 class="welcome-message">Hi ✋🏿 <strong>{{ user.get_username }}</strong> nice to see you again</h1>
-    <nav>
-      <div class="menu">
-        <ul>
-          <li><a href="{% url 'my-borrowed' %}" class="active">My Borrowed</a></li>
-          <li><a href="{% url 'all-borrowed' %}">All Borrowed Books</a></li>
-          <li><a href="{% url 'author-create' %}">Add New Author</a></li>
-          <li><a href="{% url 'book-create' %}">Add New Book</a></li>
-          <li><a href="{% url 'logout' %}?next={{ request.path }}">Logout</a></li>
 
-          {% else %}
-          <li><a href="{% url 'admin:index' %}">Admin Page</a></li>
-          <li><a href="{% url 'login' %}?next={{ request.path }}">Login</a></li>
+   
 
-          {% endif %}
-        </ul>
-      </div>
-    </nav>
-
+  
     {% block sidebar %}<!-- insert default navigation text for every page -->{% endblock %}
     {% block content %}<!-- default content text (typically empty) -->{% endblock %}
     {% block pagination %}
