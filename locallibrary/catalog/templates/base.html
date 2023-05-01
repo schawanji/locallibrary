@@ -43,7 +43,7 @@
         </div>
       </nav>
   {% else %}
-   <li><a href="{% url 'login' %}?next={{ request.path }}">Login</a>/<a>Register</a></li>
+   <li><a href="{% url 'login' %}?next={{ request.path }}">Login</a>/<a href="{% url 'signup'%}">Register</a></li>
       
     </ul>
 {% endif %}

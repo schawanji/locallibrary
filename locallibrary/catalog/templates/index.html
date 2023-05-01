@@ -36,8 +36,8 @@
       
 
 <div class="book">
-   <h2>{{ book.title }}</h2>
-   <p>Author: {{ book.author }}</p>
+   <h2><a href="{{ book.get_absolute_url }}">{{ book.title }}</a></h2>
+   <p>Author: <a href="{{ book.author.get_absolute_url }}"> {{ book.author }}</a></p>
    <p>Published: {{ book.published_date }}</p>
    <p>ISBN: {{ book.isbn }}</p>
    <img src="{{ book.image.url }}" alt="" srcset="">
@@ -57,8 +57,8 @@
    
 
 <div class="book">
-   <h2>{{ book.title }}</h2>
-   <p>Author: {{ book.author }}</p>
+   <h2><a href="{{ book.get_absolute_url }}">{{ book.title }}</a></h2>
+   <p>Author: <a href="{{ book.author.get_absolute_url }}"> {{ book.author }}</a></p>
    <p>Published: {{ book.published_date }}</p>
    <p>ISBN: {{ book.isbn }}</p>
    <img src="{{ book.image.url }}" alt="" srcset="">
