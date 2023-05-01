@@ -14,8 +14,10 @@
     <li class="book-isbn">isbn :{{ book.isbn }}</li>
     <li class="book-language">{{ book.language }}</li>
     <li class="book-genre">{{ book.genre.all|join:", " }}</li>
-    <li><a href="{{ book.get_absolute_url }}" class="btn">See more</a> <a href="" class="btn">Borrow</a></li>
+    <li><a href="{{ book.get_absolute_url }}" class="btn">See more</a> </li>
+
     
+
 
     {% if perms.catalog.can_mark_returned %}
     <button><a href="{% url 'book-update' book.pk %}">Update Book Information</a></button>

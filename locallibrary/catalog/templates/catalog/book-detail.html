@@ -11,8 +11,28 @@
     <li class="book-isbn">isbn: {{ book.isbn }}</li>
     <li class="book-language">{{ book.language }}</li>
     <li class="book-genre">{{ book.genre.all|join:", " }}</li>
-    <li><a href="" class="btn">Borrow</a> <a href="{{ book.author.get_absolute_url }}" class="btn">About author</a></li>
+    <li><a href="{{ book.author.get_absolute_url }}" class="btn">About author</a></li>
 </ul>
+
+
+
+{% for copy in book.bookinstance_set.all %}
+<p>status: {{ copy.status }}</p>
+  <p><strong>Imprint:</strong> {{ copy.imprint }}</p>
+  <p><strong>Due back:</strong> {{ copy.due_back }}</p>
+
+  {% if copy.status == 'a' %}
+<form method="post" action="{% url 'borrow-book-user' copy.id %}">
+    {% csrf_token %}
+    <button type="submit">Borrow this book</button>
+</form>
+{% else %}
+    <p>This book is not available for borrowing.</p>
+  {% endif %}
+
+
+{% endfor %}
+
 <hr>
 <div><a href="{% url 'books' %}" class="btn"> Go back to list of all books</a></div>
 {% if perms.catalog.can_mark_returned %}

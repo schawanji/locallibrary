@@ -1,4 +1,4 @@
-from django.shortcuts import render,get_object_or_404
+from django.shortcuts import render,get_object_or_404,redirect
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView,UpdateView,DeleteView
 from django.contrib.auth.decorators import login_required
@@ -13,6 +13,7 @@ import datetime
 from django.http import HttpResponseRedirect
 from django.urls import reverse,reverse_lazy
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib import messages
 from . import forms
 
 # Create your views here.
@@ -80,8 +81,30 @@ class AuthorList(LoginRequiredMixin,ListView):
 class AuthorDetail(LoginRequiredMixin,DetailView):
     model=models.Author
     template_name='catalog/author-detail.html'
-    
-    
+
+@login_required  
+def borrow_book(request, pk):
+    #book_instance = get_object_or_404(models.BookInstance, id=pk)
+    book_instance = get_object_or_404(models.BookInstance,pk=pk)
+    print (book_instance)
+    if request.method=='POST' and book_instance.status == 'a':#and available
+        book_instance.borrower = request.user
+        book_instance.status = 'o'
+        book_instance.due_back=datetime.date.today() + datetime.timedelta(weeks=3)
+        book_instance.save()
+        messages.success(request, 'The book has been borrowed successfully.')
+        return redirect('my-borrowed')
+        
+        #return redirect('book-detail', pk=book_instance.book.pk)
+    else:
+    # Display an error message if the book instance is not available
+        messages.error(request, 'Sorry, this book is not available for borrowing.')
+        
+    return render(request, 'catalog/bookinstance_list_borrowed_user.html')
+
+
+
+
 
 class LoanedBooksByUserListView(LoginRequiredMixin,ListView):
     """Generic class-based view listing books on loan to current user."""

@@ -19,6 +19,8 @@ urlpatterns=[
     path('author/update/<int:pk>', views.AuthorFormUpdate.as_view(),name='author-update'),
     path('author/<int:pk>/delete', views.AuthorFormDelete.as_view(),name='author-delete'),
 
+
+    path('book/<uuid:pk>/borrow/',views.borrow_book,name='borrow-book-user'),
     path('mybooks/', views.LoanedBooksByUserListView.as_view(), name='my-borrowed'),
     path(r'borrowed/', views.BorrowedBooksList.as_view(), name='all-borrowed'),
     #/catalog/book/<bookinstance_id>/renew/ to the function named renew_book_librarian() in views.py, and send the BookInstance id as the parameter named pk. 
