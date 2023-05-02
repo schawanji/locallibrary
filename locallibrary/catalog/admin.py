@@ -10,8 +10,8 @@ class BookInline(admin.TabularInline):
 @admin.register(models.Author)
 #Above code works the same way as -> admin.site.register(models.Author,AuthorAdmin)
 class AuthorAdmin(admin.ModelAdmin):
-    list_display = ('last_name', 'first_name', 'date_of_birth', 'date_of_death')
-    fields = ['first_name', 'last_name', ('date_of_birth', 'date_of_death')]
+    list_display = ('last_name', 'first_name', 'date_of_birth', 'date_of_death','image')
+    fields = ['first_name', 'last_name', ('date_of_birth', 'date_of_death'),'image']
     # Add inline listing of Books to author
    # inlines=[BookInline]
 

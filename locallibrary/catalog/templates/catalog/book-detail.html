@@ -3,60 +3,64 @@
 
 {% block content %}
 
-<h1>The Book</h1>
+<h1 class="book-title">Title: {{ book.title }} </h1>
+<div class="book-detail">
+
+  <div><img src="{{ book.image.url }}" alt="" srcset=""></div>
+
 <ul>
-    <li class="book-title"> {{ book.title }} </li>
-    <li class="book-author">  <a href="{{ book.author.get_absolute_url }}"> {{ book.author }}</a></li>
-    <li class="book-summary">{{ book.summary }}</li>
-    <li class="book-isbn">isbn: {{ book.isbn }}</li>
-    <li class="book-language">{{ book.language }}</li>
-    <li class="book-genre">{{ book.genre.all|join:", " }}</li>
-    <li><a href="{{ book.author.get_absolute_url }}" class="btn">About author</a></li>
+    
+    <li class="book-author"> Written by <a href="{{ book.author.get_absolute_url }}"> {{ book.author }}</a></li>
+    <li class="book-summary">{{ book.summary|truncatewords:50 }}</li>
+    <li class="book-isbn">ISBN: {{ book.isbn }}</li>
+    <li class="book-language">Language: {{ book.language }}</li>
+    <li class="book-genre">Genre: {{ book.genre.all|join:", " }}</li>
+    
 </ul>
-
-
-
-{% for copy in book.bookinstance_set.all %}
-<p>status: {{ copy.status }}</p>
-  <p><strong>Imprint:</strong> {{ copy.imprint }}</p>
-  <p><strong>Due back:</strong> {{ copy.due_back }}</p>
-
-  {% if copy.status == 'a' %}
-<form method="post" action="{% url 'borrow-book-user' copy.id %}">
-    {% csrf_token %}
-    <button type="submit">Borrow this book</button>
-</form>
-{% else %}
-    <p>This book is not available for borrowing.</p>
-  {% endif %}
-
-
-{% endfor %}
+</div>
 
 <hr>
-<div><a href="{% url 'books' %}" class="btn"> Go back to list of all books</a></div>
+<h2>Book Copies</h2>
+
+<table class="book-instances">
+  <thead>
+    <tr>
+      
+      <th>Status</th>
+      <th>Imprint</th>
+      <th>Borrow</th>
+     
+    </tr>
+  </thead>
+  <tbody>
+    {% for copy in book.bookinstance_set.all %}
+    <tr>
+      
+      <td>{{ copy.get_status_display }}</td>
+      <td>{{ copy.imprint }}</td>
+      <td>
+        {% if copy.status == 'a' %}
+        <form method="post" action="{% url 'borrow-book-user' copy.id %}">
+          {% csrf_token %}
+          <button type="submit">Borrow this book</button>
+        </form>
+        {% else %}
+        <p>Book not available, it is due to be returned on <strong>{{copy.due_back}}</strong></p>
+        {% endif %}
+      </td>
+      
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+
+<hr>
+<button><a href="{% url 'books' %}"> Go back to list of all books</a></button>
 {% if perms.catalog.can_mark_returned %}
 <button><a href="{% url 'book-update' book.pk %}">Update Book Information</a></button>
 <button><a href="{% url 'book-delete' book.pk %}">Delete Book Information</a></button>
 <hr>
 
-
-<h2>Copies</h2>
-
-<h3>{{ copy.get_status }}</h3>
-{% for copy in book.bookinstance_set.all %}
-
-
-{% if copy.status  != 'a' %}
-
-<p>Book not available, it is due to be returned on <strong>{{copy.due_back}}</strong></p>
-
-{% endif %}
-<p><strong>Imprint:</strong> {{ copy.imprint }}</p>
-      <p><strong>Id:</strong> {{ copy.id }}</p>
-
-
-
-{% endfor %}
 {% endif %}
 {% endblock %}

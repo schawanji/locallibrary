@@ -10,12 +10,18 @@ body {
 ul {
     list-style: none;
     padding: 0;
+margin: 0;
+    line-height: 1rem;
+    
+}
+li {
+    list-style: none;
+    padding-top: 0.5rem;
 
     line-height: 1rem;
     
 }
-
-h1{
+h1,h2{
     text-align: center;
 }
 
@@ -27,10 +33,10 @@ a:hover{
     color: red;
 }
 .hero{
-    /*background-image: url('/static/img/ben-white-4K2lIP0zc_k-unsplash.jpg');*/
+    /*background-image: url('/static/img/ben-white-4K2lIP0zc_k-unsplash.jpg');
     background-color: #cccccc;
     background-size: cover;
-    height: 30vh;
+    height: 30vh;*/
     text-align: center;
     line-height: 3rem;
     }
@@ -39,27 +45,29 @@ a:hover{
         list-style: none;
         display: flex;
         justify-content:space-between;
+        font-size: 1.1rem;
+        margin-bottom: 3rem;
     }
     
     .books-list{
-
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
-        
+        align-items: end;
 
-        }
+     }
 
-        .btn{
-            background-color: gold;
+    .btn{
+        background-color: gold;
         border-color: black;
         border-radius: 5%;
-        margin-left: 1rem;
+        margin-top: 1rem;
+        padding: 0.2rem;
         
             
         }
-     .all-books{text-align: center;}
+    .all-books{text-align: center;}
 
-     .general-content{
+    .general-content{
         text-align: center;
      }
      .general-content ul{
@@ -72,7 +80,9 @@ a:hover{
         margin: 0 auto;
         padding: 2rem;
      }
-
+    .menu{
+        margin-bottom: 4rem ;
+    }
      .menu ul{
         display: flex;
         margin: 0 auto;
@@ -88,32 +98,119 @@ a:hover{
         color: #000;
      }
 
-     .book li{
-        margin: 1rem;
-     }
+    
 
      .pagination{text-align: center;}
-     .text-danger{color: red;}
-/*.book-title {
+     
+
+     .book-detail{
+        display: flex;
+    text-align: justify;
+    justify-content: space-between;
+ 
+}
+
+.author-detail{
+    display: flex;
+    text-align: justify;
+    justify-content: start;
+}
+.book-detail ul {
+    padding-left: 1rem;
+}
+.book-title {
     line-height: 1rem;
-    font-weight: 400;
+    font-weight: 700;
 }
 
 .book-summary {
-    line-height: 1rem;
+    line-height: 1.2rem;
     text-align: justify;
-    font-size: 0.8rem;
+    font-size: 1rem;
+    color: gray;
+}
+
+.book-isbn ,.book-language ,.book-genre {
+    font-size: 0.85rem;
 }
 
 .text-danger {
     color: red
 }
 
-
-s
 .menu li{
     padding: 1rem;
 }
 .menu a{
     text-decoration: none;
 }
+
+.my-borrowed{
+
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 0.3rem;
+    border-radius: 1%;
+    border: solid gray 1px;
+    padding: 1rem;
+
+}
+
+
+
+/********************************   tABLE STYLE*/
+table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #ddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  tr:hover {
+    background-color: #ddd;
+  }
+  
+  tr:first-child {
+    border-top: 2px solid #ddd;
+  }
+  
+  tr:last-child {
+    border-bottom: 2px solid #ddd;
+  }
+  
+button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+button:hover {
+  background-color: #3e8e41;
+}
+
+img{
+    width: 100px;
+    height: auto;
+}
+
+  .book{text-align: justify;
+margin: 2rem;
+}
+
+form{text-align: justify;}

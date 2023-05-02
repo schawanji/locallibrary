@@ -9,7 +9,7 @@
    
    <div>
       <form method="GET" >
-         <input type="text" name="query" value="{{ query }}" id="query">
+         <input type="text" name="query" placeholder=" Charles" id="query">
          <button type="submit">Search...</button>
       </form>
    </div>
@@ -20,8 +20,7 @@
    <p>The library has the following record counts:</p>
    <ul>
       <li><strong>Books:</strong> {{ num_books }}</li>
-      <li><strong>Copies:</strong> {{ num_instances }}</li>
-      <li><strong>Copies available:</strong> {{ num_instances_available }}</li>
+      <li><strong>Copies available:</strong> {{ num_instances }}</li>
       <li><strong>Authors:</strong> {{ num_authors }}</li>
    </ul>
    </div>
@@ -36,11 +35,11 @@
       
 
 <div class="book">
-   <h2><a href="{{ book.get_absolute_url }}">{{ book.title }}</a></h2>
-   <p>Author: <a href="{{ book.author.get_absolute_url }}"> {{ book.author }}</a></p>
-   <p>Published: {{ book.published_date }}</p>
+   <p><a href="{{ book.get_absolute_url }}">{{ book.title }}</a></p>
+   <p>Author: <a href="{{ book.author.get_absolute_url }}"> {{ book.author }}</a></p> 
    <p>ISBN: {{ book.isbn }}</p>
-   <img src="{{ book.image.url }}" alt="" srcset="">
+   <div> <img src="{{ book.image.url }}" alt="" srcset=""></div>
+   <button > <a href="{{ book.author.get_absolute_url }}">View book</a> </button>
 </div>
 
     {% endfor %}
@@ -57,16 +56,17 @@
    
 
 <div class="book">
-   <h2><a href="{{ book.get_absolute_url }}">{{ book.title }}</a></h2>
+   <div> <img src="{{ book.image.url }}" alt="" srcset=""></div>
+   <p>Title: <a href="{{ book.get_absolute_url }}">{{ book.title }}</a></p>
    <p>Author: <a href="{{ book.author.get_absolute_url }}"> {{ book.author }}</a></p>
-   <p>Published: {{ book.published_date }}</p>
    <p>ISBN: {{ book.isbn }}</p>
-   <img src="{{ book.image.url }}" alt="" srcset="">
+   
+   <button > <a href="{{ book.get_absolute_url }}">View book</a> </button>
 </div>
 
   {% endfor %}
 </div >
 {% endif %}
-<div class="all-books"><a class="btn" href="{% url 'books' %}">Browse all titles </a></div>
+<button class="all-books"><a  href="{% url 'books' %}">Browse all titles </a></button>
 <p>You have visited this page {{ num_visits }} time{{ num_visits|pluralize }}.</p>
 {% endblock %}

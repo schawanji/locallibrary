@@ -56,7 +56,7 @@ class SignupView(CreateView):
 
 class BookList(LoginRequiredMixin,ListView):
     model=models.Book
-    queryset=models.Book.objects.all()[:10]
+    queryset=models.Book.objects.all()
     paginate_by = 9
 
     def get_context_data(self, **kwargs):
@@ -159,7 +159,7 @@ class AuthorFormCreate(LoginRequiredMixin,PermissionRequiredMixin,CreateView):
     model = models.Author
     template_name='catalog/authour_form_create.html'
     permission_required = 'catalog.can_mark_returned'
-    fields=['first_name','last_name','date_of_birth','date_of_death']
+    fields=['first_name','last_name','date_of_birth','date_of_death','image']
 
 
 
@@ -167,7 +167,7 @@ class AuthorFormUpdate(LoginRequiredMixin,PermissionRequiredMixin,UpdateView):
     model = models.Author
     template_name='catalog/authour_form_create.html'
     permission_required = 'catalog.can_mark_returned'
-    fields=['first_name','last_name','date_of_birth','date_of_death']
+    fields=['first_name','last_name','date_of_birth','date_of_death','image']
 
 
 class AuthorFormDelete(LoginRequiredMixin,PermissionRequiredMixin,DeleteView):

@@ -5,19 +5,15 @@
 
 
 {% block content %}
-<p></p>
-<p>{{ author.first_name }}</p>
-<p>{{ author.last_name }}</p>
-<p>Born on: {{ author.date_of_death }}</p>
+<div class="author-detail">
+<div> <img src="{{ author.image.url }}" alt="" srcset=""></div>
+<div>
+<p>FullName: {{ author.first_name }} {{ author.last_name }}</p>
+<p>Born on: {{ author.date_of_birth }}</p>
+<p>Died on: {{ author.date_of_death }}</p>
 <p><a href="{% url 'author-books' author.pk   %}">Other Books by Author</a></p>
-<ul>
-    {% for book in books %}
-    
-   
-    <li> <a href="{% url 'book-update' book.pk %}">{{ book.title }}</a></li>
-    {% endfor %}
-</ul>
-
+</div>
+</div>
 <button><a href="{% url 'author-update' author.pk %}">Update Author Information</a></button>
 <button><a href="{% url 'author-delete' author.pk %}">Delete Author Information</a></button>
 {% endblock %}
