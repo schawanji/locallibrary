@@ -310,10 +310,10 @@ form {
   }
   
 /* Styles for mobile devices */
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 780px) {
     body {
       font-size: 14px;
-      background-color: #000;
+      
     }
     
     ul {
@@ -324,7 +324,7 @@ form {
     }
     
     .books-list {
-      display: block;
+        grid-template-columns: 1fr 1fr ;
     }
   }
   
@@ -343,7 +343,7 @@ form {
     }
     
     .books-list {
-      display: none;
+    grid-template-columns: 1fr ;
     }
   }
   
