@@ -309,4 +309,43 @@ form {
     display: none;
   }
   
- 
+/* Styles for mobile devices */
+@media only screen and (max-width: 480px) {
+    body {
+      font-size: 14px;
+      background-color: #000;
+    }
+    
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      display: block;
+    }
+    
+    .books-list {
+      display: block;
+    }
+  }
+  
+  
+  @media only screen and (max-width: 480px) {
+    /* Your CSS rules for mobile devices */
+    body {
+      font-size: 14px;
+    }
+    
+    .menu ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;   
+      display: none;
+    }
+    
+    .books-list {
+      display: none;
+    }
+  }
+  
+  
+  
