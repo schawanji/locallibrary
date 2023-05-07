@@ -34,7 +34,7 @@
   {% else %}
   {% for book in book_list %}
 
-  <ul class="book">
+  <ul class="book-list">
       <li> <img src="{{ book.image.url }}" alt="" srcset=""></li>
       <li class="book-title"> <a href="{{ book.get_absolute_url }}">{{ book.title }}</a> </li>
       <li class="book-author">  <a href="{{ book.author.get_absolute_url }}"> {{ book.author }}</a></li>

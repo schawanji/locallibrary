@@ -6,67 +6,75 @@
 <div class="hero">
    <h1>Welcome to the Local Library</h1>
    <div>Expand your knowledge | Improve yourself</div>
-   
+
    <div>
-      <form method="GET" >
-         <input type="text" name="query" placeholder=" Charles" id="query">
-         <button type="submit">Search...</button>
+      <form method="GET" class="search-item">
+         <input type="text" name="query" placeholder="Search for e.g 'Tsitsi'" id="query">
+         <button type="submit">Search</button>
       </form>
    </div>
 </div>
 <hr>
 <div class="general-content">
-  
+
    <p>The library has the following record counts:</p>
    <ul>
       <li><strong>Books:</strong> {{ num_books }}</li>
       <li><strong>Copies available:</strong> {{ num_instances }}</li>
       <li><strong>Authors:</strong> {{ num_authors }}</li>
    </ul>
-   </div>
-   <hr>
+</div>
+<hr>
 
 
 {% if query %}
-  <h2>Search results for "{{ query }}"</h2>
-  {% if books %}
-  <div class="books-list">
-    {% for book in books %}
-      
+<h2>Search results for "{{ query }}"</h2>
+{% if books %}
+<div class="books-list">
+   {% for book in books %}
 
-<div class="book">
-   <p><a href="{{ book.get_absolute_url }}">{{ book.title }}</a></p>
-   <p>Author: <a href="{{ book.author.get_absolute_url }}"> {{ book.author }}</a></p> 
-   <p>ISBN: {{ book.isbn }}</p>
-   <div> <img src="{{ book.image.url }}" alt="" srcset=""></div>
-   <button > <a href="{{ book.author.get_absolute_url }}">View book</a> </button>
-</div>
+   <div class="book">
+      <div>
+         <img src="{{ book.image.url }}" alt="" srcset="">
+      </div>
+      <div>
+         <p>Title: <a href="{{ book.get_absolute_url }}">{{ book.title }}</a></p>
+         <p>Author: <a href="{{ book.author.get_absolute_url }}"> {{ book.author }}</a></p>
+         <p>ISBN: {{ book.isbn }}</p>
 
-    {% endfor %}
+         <button> <a href="{{ book.get_absolute_url }}">View book</a> </button>
+      </div>
+   </div>
+
+   {% endfor %}
 </div>
-  {% else %}
-    <p>No results found.</p>
-  {% endif %}
+{% else %}
+<p>No results found.</p>
+{% endif %}
 
 {% else %}
 
-  <h2>New books at the library</h2>
-  <div class="books-list">
-  {% for book in all_books %}
-   
+<h2>New books at the library</h2>
+<div class="books-list">
+   {% for book in all_books %}
 
-<div class="book">
-   <div> <img src="{{ book.image.url }}" alt="" srcset=""></div>
-   <p>Title: <a href="{{ book.get_absolute_url }}">{{ book.title }}</a></p>
-   <p>Author: <a href="{{ book.author.get_absolute_url }}"> {{ book.author }}</a></p>
-   <p>ISBN: {{ book.isbn }}</p>
-   
-   <button > <a href="{{ book.get_absolute_url }}">View book</a> </button>
+
+   <div class="book">
+      <div>
+         <img src="{{ book.image.url }}" alt="" srcset="">
+      </div>
+      <div>
+         <p>Title: <a href="{{ book.get_absolute_url }}">{{ book.title }}</a></p>
+         <p>Author: <a href="{{ book.author.get_absolute_url }}"> {{ book.author }}</a></p>
+         <p>ISBN: {{ book.isbn }}</p>
+
+         <button> <a href="{{ book.get_absolute_url }}">View book</a> </button>
+      </div>
+   </div>
+
+   {% endfor %}
 </div>
-
-  {% endfor %}
-</div >
 {% endif %}
-<button class="all-books"><a  href="{% url 'books' %}">Browse all titles </a></button>
+<button class="all-books"><a href="{% url 'books' %}">Browse all titles </a></button>
 <p>You have visited this page {{ num_visits }} time{{ num_visits|pluralize }}.</p>
 {% endblock %}
