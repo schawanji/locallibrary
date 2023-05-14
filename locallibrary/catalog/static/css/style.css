@@ -100,7 +100,7 @@ img {
 
 
 
-
+.search-form{width: 80%;}
 
 .hero form {
   display: flex;
@@ -341,7 +341,7 @@ button.all-books{
   }
   
   input[type="submit"] {
-    padding: 10px;
+    padding: 1rem;
     background-color: #4CAF50;
     color: white;
     border: none;
@@ -380,11 +380,12 @@ button.all-books{
   }
   
   
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: 480px) {
     /********************** CSS rules for mobile devices */
     body {
       font-size: 12px;
       width: 85%;
+      margin: 0 auto;
     }
     h1,h2{
         font-size: 1rem;
@@ -435,32 +436,36 @@ button.all-books{
         
     }
     /*************+Forms***********************/
-    .form {
-      width: 100%;
+    form {
       padding: 0 1rem;
     }
-
-    .form-input {
-      box-sizing: border-box;
+    
+    label,
+    input[type="text"],
+    input[type="password"],
+    textarea {
+      font-size: 0.9rem;
     }
-  }
   
+    button[type="submit"] {
+      font-size: 0.9rem;
+    }
   
   /*****************+ Footer ********************************/
  
   footer {
     
-    padding: 20px;
+    padding: 1rem;
     text-align: center;
   }
 
   .footer-content {
-    max-width: 800px;
+    max-width: 90%;
     margin: 0 auto;
   }
 
   .footer-content p {
-    margin-bottom: 10px;
+    margin-bottom: 1rem;
     font-size: 14px;
   }
 
@@ -470,7 +475,7 @@ button.all-books{
     margin: 0;
     display: flex;
     justify-content: center;
-    gap: 10px;
+    gap: 1rem;
     font-size: 14px;
   }
   .footer-links ul {
@@ -491,3 +496,4 @@ button.all-books{
 
   /* End footer */
 
+  }
