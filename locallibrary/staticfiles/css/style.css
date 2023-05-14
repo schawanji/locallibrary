@@ -1,117 +1,493 @@
 body {
     background-color: aquamarine;
     margin: 0 auto;
-    width: 60%
+    width: 60%;
+    line-height: 1.1rem;
+    font-size:20px;
+    box-sizing: border-box;
+
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    line-height: 1rem;
+
+}
+
+li {
+    list-style: none;
+    padding-top: 0.5rem;
+
+    line-height: 1rem;
+
+}
+
+a {text-decoration: none;
+    color: #333;
+    font-weight: 700;
+  }
+  
+  a.active {
+    background-color: #333;
+    color: #fff;
+  }
+
+h1,
+h2 {
+    text-align: center;
+}
+
+img {
+    width: 100px;
+    height: auto;
+}
+  
+/************************Nav*******************************/
+ 
+.menu {
+    padding: 1rem;
+    margin-bottom: 3rem;
+  }
+  
+  nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+
+  }
+  
+  nav li {
+    
+    position: relative;
+  }
+  
+ 
+  .manage-catalogue {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #f2f2f2;
+    padding: 1rem;
+    box-shadow: 0 0.1px 0.1px rgba(0, 0, 0, 0.2);
+  }
+  
+  nav li.open .manage-catalogue {
+    display: block;
+  }
+  .navbar .menu-icon {
+    display: none;
+    
+  }
+  
+/****************************End Nav*********************************/
+
+/*******************Hero******************************************/
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 1.2rem;
+  
 }
 
 
+
+
+
+.hero form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.hero input[type="text"] {
+  padding: 0.5rem;
+  border: 0.1rem solid #ccc;
+  border-radius: 0.45rem;
+  font-size: 1rem;
+}
+
+.hero button {
+  
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+
+/************************End Hero*********************************/
+
+
+
+.logo {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.3rem;
+    margin-bottom: 3rem;
+    font-weight: 700;
+    position: relative;
+    
+}
+
+.logo .dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1;
+  padding: 0.1rem;
+  margin: 0;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.logo .dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.logo .dropdown-menu li {
+  display: block;
+  padding: 0.5rem;
+}
+
+.books-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: end;
+    font-size: 0.9rem;
+
+}
+
+
+.book {
+    
+    margin: 2rem;
+}
+
+
+.general-content {
+    text-align: center;
+}
+
+.general-content ul {
+    display: flex;
+    margin: 0 auto;
+    padding: 0 auto;
+}
+
+.general-content li {
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+ul .book-genre {
+
+    color: #000;
+}
+
+
+
+.pagination {
+    text-align: center;
+}
+
+
+.book-detail {
+    display: flex;
+    text-align: justify;
+    justify-content: space-between;
+
+}
+
+.author-detail {
+    display: flex;
+    text-align: justify;
+    justify-content: start;
+}
+
+.book-detail ul {
+    padding-left: 1rem;
+}
 
 .book-title {
     line-height: 1rem;
-    font-weight: 400;
+    font-weight: 700;
 }
 
 .book-summary {
-    line-height: 1rem;
+    line-height: 1.2rem;
     text-align: justify;
-    font-size: 0.8rem;
+    font-size: 1rem;
+    color: gray;
+}
+
+.book-isbn,
+.book-language,
+.book-genre {
+    font-size: 0.85rem;
 }
 
 .text-danger {
     color: red
 }
 
-
-header {
-    background-color: #333;
-    /* Set the background color */
-    color: #fff;
-    /* Set the text color */
-    padding: 10px;
-    /* Add some padding */
+.menu li {
+    padding: 1rem;
 }
 
-nav {
+.menu a {
+    text-decoration: none;
+}
+
+.my-borrowed {
+
     display: flex;
-    /* Set items to display in a row */
-    justify-content: space-between;
-    /* Distribute items evenly */
-    align-items: center;
-    /* Center items vertically */
+    justify-content: space-around;
+    margin-bottom: 0.3rem;
+    border-radius: 1%;
+    border: solid gray 1px;
+    padding: 1rem;
+
 }
 
- a {
-    font-size: 24px;
-    /* Set the font size */
-    font-weight: bold;
-    /* Set the font weight */
-    color: #fff;
-    /* Set the text color */
+
+
+/*****************Table Style****************/
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td,
+th {
+    border: 1px solid #ddd;
+    text-align: left;
+    padding: 8px;
+}
+
+
+tr:hover {
+    background-color: #ddd;
+}
+
+tr:first-child {
+    border-top: 2px solid #ddd;
+}
+
+tr:last-child {
+    border-bottom: 2px solid #ddd;
+}
+
+button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    text-align: center;
     text-decoration: none;
-    /* Remove underlines */
-}
-
-.menu ul {
-    list-style: none;
-    /* Remove bullets */
-    margin: 0;
-    /* Remove default margin */
-    padding: 0;
-    /* Remove default padding */
-}
-
-.menu ul li {
     display: inline-block;
-    /* Set to display inline */
-    margin-right: 20px;
-    /* Add some spacing between items */
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
 }
 
-.menu ul li a {
-    color: #fff;
-    /* Set the text color */
-    text-decoration: none;
-    /* Remove underlines */
-    font-size: 18px;
-    /* Set the font size */
+button:hover {
+    background-color: #3e8e41;
+}
+
+button.all-books{
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    background-color: #ccc;
+  }
+  
+  form div{
+    margin-top: 1rem;
+  }
+  
+  form.search-item{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 0 auto;
+  }
+  label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+  
+  input[type="text"],
+  input[type="password"] {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 300px;
+  }
+  
+  input[type="submit"] {
     padding: 10px;
-    /* Add some padding */
-}
-
-.menu ul li a:hover {
-    background-color: #555;
-    /* Set the background color */
-}
-
-.dropdown-content {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  input[type="submit"]:hover {
+    background-color: #3e8e41;
+  }
+  
+  input[type="hidden"] {
     display: none;
-    /* Hide the dropdown content */
-    position: absolute;
-    /* Set the position */
-    background-color: #f9f9f9;
-    /* Set the background color */
-    min-width: 160px;
-    /* Set the minimum width */
-    z-index: 1;
-    /* Set the z-index */
-    padding: 10px;
-    /* Add some padding */
-    margin-top: 5px;
-    /* Add some spacing */
-}
+  }
+  
+/* Styles for mobile devices */
+@media only screen and (max-width: 780px) {
+    body {
+      font-size: 14px;
+      box-sizing: border-box;
+      
+    }
+    
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      display: block;
+    }
+    h1,h2{
+        font-size: 1rem;
+    }
+    .books-list {
+        grid-template-columns: 1fr 1fr ;
+    }
+  }
+  
+  
+  @media only screen and (max-width: 600px) {
+    /********************** CSS rules for mobile devices */
+    body {
+      font-size: 12px;
+      width: 85%;
+    }
+    h1,h2{
+        font-size: 1rem;
+    }
 
-.dropdown-content a {
+    /********Navbar**************************************/
+    .logo {
+         font-size: 1.2rem; 
+    }
+    .menu ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;   
+      display: none;
+    }
+
+
+    .navbar .menu-icon {
+      display: block;
+      color: #333;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .navbar .menu {
+      display: block;
+    }
+
+    .navbar .menu.active {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    /**********End of Navbar**************/
+    
+    .books-list {
+    grid-template-columns: 1fr ;
+    font-size: 12px;
+    }
+
+    .book {   
+        margin: 2rem;
+        display: flex;
+        text-align: start;
+        padding: 1rem;
+        gap:1rem
+        
+    }
+    /*************+Forms***********************/
+    .form {
+      width: 100%;
+      padding: 0 1rem;
+    }
+
+    .form-input {
+      box-sizing: border-box;
+    }
+  }
+  
+  
+  /*****************+ Footer ********************************/
+ 
+  footer {
+    
+    padding: 20px;
+    text-align: center;
+  }
+
+  .footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .footer-content p {
+    margin-bottom: 10px;
+    font-size: 14px;
+  }
+
+  .footer-links {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    font-size: 14px;
+  }
+  .footer-links ul {
+    display: block;
+  }
+  .footer-links li {
+   padding: 1rem;
+  }
+
+  .footer-links li a {
     color: #333;
-    /* Set the text color */
     text-decoration: none;
-    /* Remove underlines */
-    display: block;
-    /* Set to display in a block */
-    padding: 5px 0;
-    /* Add some padding */
-}
+  }
 
-.dropdown:hover .dropdown-content {
-    display: block;
-    /* Show the dropdown content on hover */
-}
+  .footer-links li a:hover {
+    text-decoration: underline;
+  }
+
+  /* End footer */
+
