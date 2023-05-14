@@ -22,10 +22,10 @@ cd locallibrary\locallibrary
 pip3 install -r requirements.txt
 python3 manage.py  makemigrations
 python3 manage.py  migrate
+python3 manage.py  createsuperuser
 python3 manage.py  runserver
 ```
-App is running on http://localhost:8081/catalog/ 
+App is running on http://localhost:8000 
 
-username: admin
-password: admin
+Log in with credentials from the python3 manage.py  createsuperuser command
 
