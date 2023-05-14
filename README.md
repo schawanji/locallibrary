@@ -22,10 +22,10 @@ cd locallibrary\locallibrary
 pip3 install -r requirements.txt
 python3 manage.py  makemigrations
 python3 manage.py  migrate
-python3 manage.py  runserver 8081
+python3 manage.py  runserver
 ```
 App is running on http://localhost:8081/catalog/ 
 
 username: admin
-password: hp
+password: admin
 
