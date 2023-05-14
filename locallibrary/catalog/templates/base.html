@@ -11,7 +11,13 @@
 </head>
 
 <body>
+  <div class="cookie-notice">
+    This website uses cookies to ensure you get the best experience on our website.
+    <button onclick="closeCookieNotice()">Got it!</button>
+  </div>
   <header>
+    <!-- Pop-up window content -->
+  
     <nav class="navbar">
       <ul class="logo">
         <li><a href="{% url 'home' %}">LocalLibrary</a> </li>
@@ -105,8 +111,8 @@
         </li>
         <li>
           <a href="https://www.linkedin.com/in/schawanji/">Lets connect on LinkedIn
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 16 16" fill="none" role="img"
-              aria-labelledby="nag2y1vj406fl0b193g7hhs3ml7x4mw" class="octicon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 16 16" 
+              >
               <title id="nag2y1vj406fl0b193g7hhs3ml7x4mw">LinkedIn</title>
               <g clip-path="url(#clip0_202_91845)">
                 <path
@@ -118,8 +124,8 @@
         </li>
         <li>
           <a href="https://www.instagram.com/schawanji/">Follow me on Instagram
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 16 16" fill="none" role="img"
-              aria-labelledby="90fdwckh368qc4b4s153mke07s37hts" class="octicon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 16 16" 
+             >
               <title id="90fdwckh368qc4b4s153mke07s37hts">Instagram</title>
               <g clip-path="url(#clip0_202_91849)">
                 <path
@@ -130,12 +136,38 @@
         </li>
       </ul>
 
-      <p>&copy; 2023 @schawanji. All rights reserved.</p>
+      <p>&copy; 2023. All rights reserved.</p>
     </div>
   </footer>
 
 
-  <script src="{% static 'js/index.js'%}"></script>
+  <script >
+
+
+// JavaScript code to toggle the menu 
+function toggleMenu() {
+    
+
+    const menuItems = document.querySelector('.menu-items');
+    menuItems.classList.toggle('open');
+}
+
+//and dropdown
+
+function toggleDropdown(event) {
+
+    event.preventDefault();
+    const dropdown = event.target.parentNode;
+    const menu = dropdown.querySelector('.manage-catalogue');
+    menu.classList.toggle('show');
+}
+
+//JavaScript function to close the pop-up window 
+function closeCookieNotice() {
+    document.querySelector('.cookie-notice').style.display = 'none';
+  
+  }
+  </script>
 </body>
 
 </html>

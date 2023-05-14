@@ -4,18 +4,31 @@
 
 {% block content %}
 
-{% for bookinst in object_list %}
-
-<ul>
-    
-<li>{{ bookinst.book.title }}</li>
-<li>{{ bookinst.due_back }}</li>
-<li>{{ bookinst.borrower }}</li>
-<li>
-    {% if perms.catalog.can_mark_returned %}- <a href="{% url 'renew-book-librarian' bookinst.id %}">Renew</a>{% endif %}
-</li>
-</ul>
-
-{% endfor %}
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Due Date</th>
+      <th>Borrower</th>
+      {% if perms.catalog.can_mark_returned %}
+      <th>Actions</th>
+      {% endif %}
+    </tr>
+  </thead>
+  <tbody>
+    {% for bookinst in object_list %}
+    <tr>
+      <td>{{ bookinst.book.title }}</td>
+      <td>{{ bookinst.due_back }}</td>
+      <td>{{ bookinst.borrower }}</td>
+      <td>
+        {% if perms.catalog.can_mark_returned %}
+        <a href="{% url 'renew-book-librarian' bookinst.id %}"><button>Renew</button></a>
+        {% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 
 {% endblock %}

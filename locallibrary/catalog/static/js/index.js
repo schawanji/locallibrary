@@ -17,4 +17,8 @@ function toggleDropdown(event) {
     menu.classList.toggle('show');
 }
 
-
+//JavaScript function to close the pop-up window 
+function closeCookieNotice() {
+    document.querySelector('.cookie-notice').style.display = 'none';
+    alert('noted')
+  }

@@ -1,38 +1,41 @@
 {% extends 'base.html' %}
 
-
-{% block title %} <title>Author Information</title> {% endblock %}
+{% block title %}
+  <title>Author Information</title>
+{% endblock %}
 
 {% block content %}
-
-{% for author in author_list %}
-
-
-
-<ul>
-    <li> <a href="{{ author.get_absolute_url }}">{{author.first_name}} {{author.last_name}}</a> </li>
-    <li class = 'date_of_death'>Born on :{{author.date_of_birth }}</li>
-    <li>{{author.book.title}}<a href=""></a></li>
-{% for book in author.book_set.all %}
-    <!--Loop so we can view books -->
-    <li>{{author.book.all|join:", " }}<a href=""></a></li>
-   
-
-    {% endfor %}
-
-{% if author.date_of_death  %}
-
-<li class = 'date_of_death'>Died on :{{author.date_of_death }}</li>
-{% endif %}
-
-{% if perms.catalog.can_mark_returned %}
-<button><a href="{% url 'author-update' author.pk %}">Update Author Information</a></button>
-<button><a href="{% url 'author-delete' author.pk %}">Delete Author Information</a></button>
-{% endif %}
-</ul>
-
-
-
-{% endfor %}
-
+  <table>
+    <thead>
+      <tr>
+        <th>Author</th>
+        <th>Date of Birth</th>
+        <th>Books</th>
+        <th>Date of Death</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for author in author_list %}
+        <tr>
+          <td><a href="{{ author.get_absolute_url }}">{{ author.first_name }} {{ author.last_name }}</a></td>
+          <td>{{ author.date_of_birth }}</td>
+          <td>
+            <ul>
+              {% for book in author.book_set.all %}
+                <li>{{ book.title }}</li>
+              {% endfor %}
+            </ul>
+          </td>
+          <td>{% if author.date_of_death %}{{ author.date_of_death }}{% endif %}</td>
+          <td>
+            {% if perms.catalog.can_mark_returned %}
+              <button><a href="{% url 'author-update' author.pk %}">Update Author Information</a></button>
+              <button><a href="{% url 'author-delete' author.pk %}">Delete Author Information</a></button>
+            {% endif %}
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 {% endblock %}

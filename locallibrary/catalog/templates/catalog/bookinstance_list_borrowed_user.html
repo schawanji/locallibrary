@@ -1,28 +1,49 @@
-{% extends "base.html" %} {% block content %}
-<h2>Here is a list of your borrowed books</h2> {% if bookinstance_list %}
+{% extends "base.html" %}
 
-	{% for bookinst in bookinstance_list %}
-  <div class="my-borrowed">
-  <div> <img src="{{ bookinst.book.image.url }}" alt="" srcset=""></div>
-  <ul> 
-		
-		<li class="{% if bookinst.is_overdue %}text-danger{% endif %}"> <a href="{% url 'book-detail' bookinst.book.pk %}">{{ bookinst.book.title }}</a> </li>
-		<li><a href="{% url 'book-detail' bookinst.book.pk %}">{{ bookinst.book.author }}</a></li> {% if bookinst.is_overdue %}
-		<li class="{% if bookinst.is_overdue %}text-danger{% endif %}">Due back: ({{ bookinst.due_back }})</li>
-		<li class="{% if bookinst.is_overdue %}text-danger{% endif %}"> &#9888; You are way over due please return book to avoid incurring a fine</li> {% else %}
-		<li class="{% if bookinst.is_overdue %}text-danger{% endif %}">Due back: ({{ bookinst.due_back }})</li>
-  </ul>
-    {% endif %} 
-  </div>
-    {% endfor %} 
-  
+{% block content %}
+  <h2>Here is a list borrowed books</h2>
+
+  {% if bookinstance_list %}
+    <table>
+      <thead>
+        <tr>
+          <!--th>Book</th-->
+          <th>Title</th>
+          <th>Author</th>
+          <th>Due Back</th>
+          <th>Status</th>
+
+          {% if perms.catalog.can_mark_returned %}
+          <th>Renew Date</th>
+          <th>Return Book</th>
+          {% endif %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for bookinst in bookinstance_list %}
+          <tr>
+            <!--td><img src="{{ bookinst.book.image.url }}" alt="" srcset=""></td-->
+            <td class="{% if bookinst.is_overdue %}text-danger{% endif %}">
+              <a href="{% url 'book-detail' bookinst.book.pk %}">{{ bookinst.book.title }}</a>
+            </td>
+            <td><a href="{% url 'book-detail' bookinst.book.pk %}">{{ bookinst.book.author }}</a></td>
+            <td>{{ bookinst.due_back }}</td>
+            <td class="{% if bookinst.is_overdue %}text-danger{% endif %}">
+              {% if bookinst.is_overdue %}&#9888; Overdue{% else %}On Time{% endif %}
+            </td>
+            {% if perms.catalog.can_mark_returned %}
+            <td><a href="{% url 'renew-book-librarian' bookinst.pk %}"><button>renew</button></a></td>
+            <td><a href="{% url 'renew-book-librarian' bookinst.pk %}"><button>return</button></a></td>
+          {% endif %}
+
+
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>There are no books borrowed.</p>
+  {% endif %}
+
  
-{% else %}
-<p>There are no books borrowed.</p> 
-{% endif %} 
-{% if perms.catalog.can_mark_returned %}
-<!-- We can mark a BookInstance as returned. -->
-<!-- Perhaps add code to link to a "book return" view here. -->
-<p>REturned</p> 
-{% endif %} 
 {% endblock %}
