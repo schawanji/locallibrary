@@ -3,7 +3,8 @@ body {
     margin: 0 auto;
     width: 60%;
     line-height: 1.1rem;
-    font-size:18px;
+    font-size:20px;
+    box-sizing: border-box;
 
 }
 
@@ -23,20 +24,15 @@ li {
 
 }
 
-a {
-    display: block;
-    padding: 10px;
-    text-decoration: none;
+a {text-decoration: none;
     color: #333;
+    font-weight: 700;
   }
   
   a.active {
     background-color: #333;
     color: #fff;
   }
-
-  
-
 
 h1,
 h2 {
@@ -76,42 +72,108 @@ img {
     top: 100%;
     left: 0;
     background-color: #f2f2f2;
-    padding: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    padding: 1rem;
+    box-shadow: 0 0.1px 0.1px rgba(0, 0, 0, 0.2);
   }
   
   nav li.open .manage-catalogue {
     display: block;
   }
+  .navbar .menu-icon {
+    display: none;
+    
+  }
   
 /****************************End Nav*********************************/
 
+/*******************Hero******************************************/
+
 .hero {
-    background-color: #cccccc;
-    background-size: cover;
-    height: 30vh;
-    text-align: center;
-    line-height: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 1.2rem;
+  
 }
+
+
+
+
+
+.hero form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.hero input[type="text"] {
+  padding: 0.5rem;
+  border: 0.1rem solid #ccc;
+  border-radius: 0.45rem;
+  font-size: 1rem;
+}
+
+.hero button {
+  
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+
+/************************End Hero*********************************/
+
+
 
 .logo {
     list-style: none;
     display: flex;
     justify-content: space-between;
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     margin-bottom: 3rem;
+    font-weight: 700;
+    position: relative;
+    
+}
+
+.logo .dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1;
+  padding: 0.1rem;
+  margin: 0;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.logo .dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.logo .dropdown-menu li {
+  display: block;
+  padding: 0.5rem;
 }
 
 .books-list {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     align-items: end;
+    font-size: 0.9rem;
 
 }
 
 
 .book {
-    text-align: justify;
+    
     margin: 2rem;
 }
 
@@ -204,6 +266,7 @@ ul .book-genre {
 
 
 /*****************Table Style****************/
+
 table {
     border-collapse: collapse;
     width: 100%;
@@ -251,37 +314,22 @@ button.all-books{
     display: block;
     margin: 0 auto;
     text-align: center;
+    background-color: #ccc;
   }
-
-.btn {
-    background-color: gold;
-    border-color: black;
-    border-radius: 5%;
+  
+  form div{
     margin-top: 1rem;
-    padding: 0.2rem;
-
-
-}
-
-
-
-form {
+  }
+  
+  form.search-item{
     display: flex;
-    flex-direction: column;
     align-items: center;
-    margin-top: 50px;
-    text-align: justify;
+    text-align: center;
+    margin: 0 auto;
   }
-  
-  form div {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 20px;
-  }
-  
   label {
     font-weight: bold;
-    margin-bottom: 5px;
+    margin-bottom: 0.5rem;
   }
   
   input[type="text"],
@@ -313,6 +361,7 @@ form {
 @media only screen and (max-width: 780px) {
     body {
       font-size: 14px;
+      box-sizing: border-box;
       
     }
     
@@ -322,30 +371,123 @@ form {
       padding: 0;
       display: block;
     }
-    
+    h1,h2{
+        font-size: 1rem;
+    }
     .books-list {
         grid-template-columns: 1fr 1fr ;
     }
   }
   
   
-  @media only screen and (max-width: 480px) {
-    /* Your CSS rules for mobile devices */
+  @media only screen and (max-width: 600px) {
+    /********************** CSS rules for mobile devices */
     body {
-      font-size: 14px;
+      font-size: 12px;
+      width: 85%;
     }
-    
+    h1,h2{
+        font-size: 1rem;
+    }
+
+    /********Navbar**************************************/
+    .logo {
+         font-size: 1.2rem; 
+    }
     .menu ul {
       list-style-type: none;
       margin: 0;
       padding: 0;   
       display: none;
     }
+
+
+    .navbar .menu-icon {
+      display: block;
+      color: #333;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .navbar .menu {
+      display: block;
+    }
+
+    .navbar .menu.active {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    /**********End of Navbar**************/
     
     .books-list {
     grid-template-columns: 1fr ;
+    font-size: 12px;
+    }
+
+    .book {   
+        margin: 2rem;
+        display: flex;
+        text-align: start;
+        padding: 1rem;
+        gap:1rem
+        
+    }
+    /*************+Forms***********************/
+    .form {
+      width: 100%;
+      padding: 0 1rem;
+    }
+
+    .form-input {
+      box-sizing: border-box;
     }
   }
   
   
-  
+  /*****************+ Footer ********************************/
+ 
+  footer {
+    
+    padding: 20px;
+    text-align: center;
+  }
+
+  .footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .footer-content p {
+    margin-bottom: 10px;
+    font-size: 14px;
+  }
+
+  .footer-links {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    font-size: 14px;
+  }
+  .footer-links ul {
+    display: block;
+  }
+  .footer-links li {
+   padding: 1rem;
+  }
+
+  .footer-links li a {
+    color: #333;
+    text-decoration: none;
+  }
+
+  .footer-links li a:hover {
+    text-decoration: underline;
+  }
+
+  /* End footer */
+
