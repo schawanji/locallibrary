@@ -145,27 +145,44 @@ nav li.open .manage-catalogue {
   position: relative;
 }
 
-.logo .dropdown-menu {
+
+.menu a:hover, .dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+  padding: 1rem;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
   display: none;
   position: absolute;
-  top: 100%;
-  left: 0;
+  background-color: #f1f1f1;
+  min-width: 120px;
+  box-shadow: 1rem rgba(0,0,0,0.2);
   z-index: 1;
-  padding: 0.1rem;
-  margin: 0;
-  background-color: #fff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-.logo .dropdown:hover .dropdown-menu {
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  text-decoration: none;
   display: block;
 }
 
-.logo .dropdown-menu li {
-  display: block;
-  padding: 0.5rem;
-}
 
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #9b9999;}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block;}
+
+
+/*************************************************************************/
 .books-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -465,7 +482,7 @@ input[type="hidden"] {
     display: none;
     line-height: 1rem;
   }
-
+ 
   .navbar .menu-icon {
     display: block;
     color: #333;
@@ -473,15 +490,30 @@ input[type="hidden"] {
     cursor: pointer;
   }
 
-  .navbar .menu {
+  .menu.responsive {position: relative;}
+  .menu.menu-icon.responsive {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .menu.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  .menu.responsive .dropdown {float: none;}
+  .menu.responsive .dropdown-content {position: relative;}
+  .menu.responsive .dropdown .dropbtn {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+
+  .menu-items {
     display: block;
   }
 
-  .navbar .menu.active {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
+
 
   /* Books List */
   .books-list {

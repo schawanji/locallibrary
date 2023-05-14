@@ -7,16 +7,17 @@
 
   <link rel="stylesheet" href="{% static 'css/style.css'%}">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
+      <!-- Pop-up window content -->
   <div class="cookie-notice">
     This website uses cookies to ensure you get the best experience on our website.
     <button onclick="closeCookieNotice()">Got it!</button>
   </div>
   <header>
-    <!-- Pop-up window content -->
+
   
     <nav class="navbar">
       <ul class="logo">
@@ -24,19 +25,19 @@
 
         {% if user.is_authenticated %}
         <li class="dropdown">
-          <div class="welcome-message">Hi ✋🏿 <strong>{{ user.get_username }} &#9662;</strong></div>
-          <ul class="dropdown-menu">
-            <li>
+          <div class="welcome-message dropbtn">Hi ✋🏿 <strong>{{ user.get_username }} &#9662;</strong></div>
+          <div class="dropdown-content">
+            
               <a href="{% url 'logout' %}?next={{ request.path }}">Logout</a>
-            </li>
-          </ul>
+            
+          </div>
 
         </li>
 
       </ul>
 
       <div class="menu" id="menu">
-        <div class="menu-icon burger-icon" onclick="toggleMenu()">&#9776;</div>
+        <div class="menu-icon burger-icon" onclick="myFunction()">&#9776;</div>
         <ul class="menu-items">
           <li><a href="{% url 'home' %}">Home</a></li>
           <li><a href="{% url 'my-borrowed' %}" class="active">My Borrowed</a></li>
@@ -44,22 +45,20 @@
           <li><a href="{% url 'authors' %}">Authors</a></li>
           {% if perms.catalog.can_mark_returned %}
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" onclick="toggleDropdown(event)">Manage Catalogue &#9662;</a>
-            <ul class="manage-catalogue">
+            <div class="dropbtn">Manage Catalogue &#9662;</div>
+            <ul class="manage-catalogue dropdown-content">
               <li><a href="{% url 'all-borrowed' %}">All Borrowed Books</a></li>
               <li><a href="{% url 'author-create' %}">Add New Author</a></li>
               <li><a href="{% url 'book-create' %}">Add New Book</a></li>
               <li><a href="{% url 'admin:index' %}">Admin Page</a></li>
             </ul>
           </li>
+          
           {% endif %}
         </ul>
       </div>
     </nav>
-
-
-
-
+  
     {% else %}
     <li><a href="{% url 'login' %}?next={{ request.path }}">Login</a>/<a href="{% url 'signup'%}">Register</a></li>
 
@@ -142,24 +141,13 @@
 
 
   <script >
-
-
-// JavaScript code to toggle the menu 
-function toggleMenu() {
-    
-
-    const menuItems = document.querySelector('.menu-items');
-    menuItems.classList.toggle('open');
-}
-
-//and dropdown
-
-function toggleDropdown(event) {
-
-    event.preventDefault();
-    const dropdown = event.target.parentNode;
-    const menu = dropdown.querySelector('.manage-catalogue');
-    menu.classList.toggle('show');
+function myFunction() {
+  var x = document.getElementById("menu");
+  if (x.className === "menu-icon") {
+    x.className += " responsive";
+  } else {
+    x.className = "menu-icon";
+  }
 }
 
 //JavaScript function to close the pop-up window 
