@@ -217,4 +217,8 @@ class BooksByAuthorListView(ListView):
         return models.Book.objects.filter(author__pk=pk)
        
 
-      
+class UserProfileView(LoginRequiredMixin,ListView):
+    model=models.UserProfile
+    template_name='catalog/members.html'
+    context_object_name='profiles'
+

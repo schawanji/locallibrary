@@ -106,4 +106,14 @@ class BookInstance(models.Model):
 
 
 
-   
+class UserProfile(models.Model):
+    username=models.ForeignKey(User,on_delete=models.CASCADE)
+    name=models.CharField(max_length=20, null=True, blank=True)
+    lastname=models.CharField(max_length=20, null=True, blank=True)
+    email=models.EmailField(max_length=20, null=True, blank=True)
+    phone=models.IntegerField(null=True, blank=True)
+    image = models.ImageField(upload_to='images/',null=True)
+    
+
+    def _str_(self):
+        return f'{self.username} {self.name} {self.lastname} '

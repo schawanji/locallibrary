@@ -29,6 +29,7 @@
           <div class="dropdown-content">
             
               <a href="{% url 'logout' %}?next={{ request.path }}">Logout</a>
+              <a href="#">Manage account</a>
             
           </div>
 
@@ -51,6 +52,7 @@
               <li><a href="{% url 'author-create' %}">Add New Author</a></li>
               <li><a href="{% url 'book-create' %}">Add New Book</a></li>
               <li><a href="{% url 'admin:index' %}">Admin Page</a></li>
+              <li><a href="{% url 'members' %}">Members</a></li>
             </ul>
           </li>
           

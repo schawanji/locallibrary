@@ -45,3 +45,4 @@ class BookInstanceAdmin(admin.ModelAdmin):
 admin.site.register(models.Genre)
 admin.site.register(models.BookInstance,BookInstanceAdmin)
 admin.site.register(models.Language)
+admin.site.register(models.UserProfile)
