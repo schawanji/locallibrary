@@ -222,3 +222,6 @@ class UserProfileView(LoginRequiredMixin,ListView):
     template_name='catalog/members.html'
     context_object_name='profiles'
 
+class UserProfile(LoginRequiredMixin,DetailView):
+    model=models.UserProfile
+    template_name='catalog/member.html'

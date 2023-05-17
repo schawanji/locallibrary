@@ -25,11 +25,12 @@
 
         {% if user.is_authenticated %}
         <li class="dropdown">
+          {{user.user_profile.phone}}s
           <div class="welcome-message dropbtn">Hi ✋🏿 <strong>{{ user.get_username }} &#9662;</strong></div>
           <div class="dropdown-content">
             
               <a href="{% url 'logout' %}?next={{ request.path }}">Logout</a>
-              <a href="#">Manage account</a>
+              <a href="{% url 'member' user.pk %}">Manage account</a>
             
           </div>
 

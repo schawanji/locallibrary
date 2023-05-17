@@ -2,6 +2,8 @@ from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
 from datetime import date
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 import uuid
 # Create your models here.
@@ -107,13 +109,21 @@ class BookInstance(models.Model):
 
 
 class UserProfile(models.Model):
-    username=models.ForeignKey(User,on_delete=models.CASCADE)
-    name=models.CharField(max_length=20, null=True, blank=True)
-    lastname=models.CharField(max_length=20, null=True, blank=True)
-    email=models.EmailField(max_length=20, null=True, blank=True)
+    user=models.OneToOneField(User,on_delete=models.CASCADE)
     phone=models.IntegerField(null=True, blank=True)
     image = models.ImageField(upload_to='images/',null=True)
     
 
-    def _str_(self):
-        return f'{self.username} {self.name} {self.lastname} '
+    def __str__(self):
+        return f'{self.user.username}'
+
+        
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created and not hasattr(instance, 'userprofile'):
+        UserProfile.objects.create(user=instance)
+
+@receiver(post_save, sender=User)
+def save_user_profile(sender, instance, **kwargs):
+    if hasattr(instance, 'userprofile'):
+        instance.userprofile.save()
