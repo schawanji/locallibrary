@@ -11,6 +11,7 @@
 <p>FullName: {{ author.first_name }} {{ author.last_name }}</p>
 <p>Born on: {{ author.date_of_birth }}</p>
 <p>Died on: {{ author.date_of_death }}</p>
+<p>Died on: {{ author.birthplace }}</p>
 <p><a href="{% url 'author-books' author.pk   %}">Other Books by Author</a></p>
 </div>
 </div>

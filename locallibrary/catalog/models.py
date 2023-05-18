@@ -6,7 +6,18 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 import uuid
+
+
+def get_default_image():
+    return '/images/default.png'
 # Create your models here.
+
+class Country(models.Model):
+    name = models.CharField(max_length=200, help_text='Enter country (e.g. Zimbabwe)')
+    
+    def __str__(self):
+     return self.name
+    
 class Genre(models.Model):
     name = models.CharField(max_length=200, help_text='Enter a book genre (e.g. Science Fiction)')
     
@@ -37,7 +48,7 @@ class Book(models.Model):
     # Genre class has already been defined so we can specify the object above.
     genre = models.ManyToManyField(Genre, help_text='Select a genre for this book')
     language =models.ForeignKey(Language,on_delete=models.PROTECT,null=True,blank=True)
-    image = models.ImageField(upload_to='images/',null=True)
+    image = models.ImageField(upload_to='images/',null=True,default=get_default_image)
 
     class Meta:
         verbose_name = 'book'
@@ -61,7 +72,10 @@ class Author(models.Model):
     last_name = models.CharField(max_length=100)
     date_of_birth = models.DateField(null=True, blank=True)
     date_of_death = models.DateField('Died', null=True, blank=True)
-    image = models.ImageField(upload_to='images/',null=True)
+    image = models.ImageField(upload_to='images/',null=True,default=get_default_image)
+    bio = models.TextField(max_length=1000, null=True, blank=True)
+    birthplace = models.ForeignKey(Country,on_delete=models.PROTECT,null=True,blank=True)
+
     
 
     class Meta:
@@ -111,7 +125,7 @@ class BookInstance(models.Model):
 class UserProfile(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE)
     phone=models.IntegerField(null=True, blank=True)
-    image = models.ImageField(upload_to='images/',null=True)
+    image = models.ImageField(upload_to='images/',null=True,default=get_default_image)
     
 
     def __str__(self):

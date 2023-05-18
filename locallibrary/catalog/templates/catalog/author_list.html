@@ -10,6 +10,7 @@
       <tr>
         <th>Author</th>
         <th>Date of Birth</th>
+        <th>Place of Birth</th>
         <th>Books</th>
         <th>Date of Death</th>
         <th>Actions</th>
@@ -20,6 +21,7 @@
         <tr>
           <td><a href="{{ author.get_absolute_url }}">{{ author.first_name }} {{ author.last_name }}</a></td>
           <td>{{ author.date_of_birth }}</td>
+          <td>{{ author.birthplace }}</td>
           <td>
             <ul>
               {% for book in author.book_set.all %}
