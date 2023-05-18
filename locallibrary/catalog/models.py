@@ -130,6 +130,10 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return f'{self.user.username}'
+    
+    def get_absolute_url(self):
+        """Returns the URL to access a particular author instance."""
+        return reverse('member', args=[str(self.id)])
 
         
 @receiver(post_save, sender=User)

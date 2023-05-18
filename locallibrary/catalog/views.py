@@ -159,7 +159,7 @@ class AuthorFormCreate(LoginRequiredMixin,PermissionRequiredMixin,CreateView):
     model = models.Author
     template_name='catalog/authour_form_create.html'
     permission_required = 'catalog.can_mark_returned'
-    fields=['first_name','last_name','date_of_birth','date_of_death','image']
+    fields=['first_name','last_name','date_of_birth','date_of_death','image','birthplace']
 
 
 
@@ -225,3 +225,14 @@ class UserProfileView(LoginRequiredMixin,ListView):
 class UserProfile(LoginRequiredMixin,DetailView):
     model=models.UserProfile
     template_name='catalog/member.html'
+
+
+
+
+class UserProfileUpdate(LoginRequiredMixin,UpdateView):
+    model=models.UserProfile
+    #form=forms.UserProfileForm
+    template_name='catalog/member_create_form.html'
+    fields=['phone','image']  
+    success_url=reverse_lazy('member')
+

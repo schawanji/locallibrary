@@ -5,6 +5,10 @@ urlpatterns=[
     path('',views.home,name='home'),
     path('members/',views.UserProfileView.as_view(), name='members'),
     path('member/<int:pk>',views.UserProfile.as_view(), name='member'),
+    #path('member/create/<int:pk>',views.UserProfileCreate.as_view(), name='member-create'),
+    path('member/update/<int:pk>',views.UserProfileUpdate.as_view(), name='member-update'),
+   
+    
     path('books/',views.BookList.as_view(),name='books'),
     path('authors/',views.AuthorList.as_view(),name='authors'),
     path('signup/',views.SignupView.as_view(),name='signup'),

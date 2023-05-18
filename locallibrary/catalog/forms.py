@@ -31,3 +31,9 @@ class BookForm(forms.ModelForm):
     class Meta:
         model=models.Book
         fields=['title','summary','isbn','genre','image']        
+
+
+class UserProfileForm(forms.ModelForm):
+    class Meta:
+        model=models.UserProfile
+        fields=['phone','image']                

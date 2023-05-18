@@ -9,4 +9,6 @@
     <img src="{{ userprofile.image.url }}" alt="User Image">
     
   {% endif %}
+
+  <button> <a href="{% url 'userprofile-list' member.pk %}"> Update Info </a></button>
 {% endblock %}
