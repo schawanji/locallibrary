@@ -1,3 +1,5 @@
+locallibrary/settings.py
+
 # Text backup files
 *.bak
 
