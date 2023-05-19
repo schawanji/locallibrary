@@ -4,6 +4,9 @@
   <h1>User Profile</h1>
   {{ userprofile.user.user }}
   <p>Username: {{ userprofile.user.username }}</p>
+  <p>FirstName: {{ userprofile.user.first_name }}</p>
+  <p>LastName: {{ userprofile.user.last_name }}</p>
+  <p>Email: {{ userprofile.user.email }}</p>
   <p>Phone: {{ userprofile.phone }}</p>
   {% if userprofile.image %}
     <img src="{{ userprofile.image.url }}" alt="User Image">

@@ -11,6 +11,7 @@
             <th>Email</th>
             <th>Phone</th>
             <th>Image</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -21,8 +22,11 @@
             <td>{{ profile.user.last_name }}</td>
             <td>{{ profile.user.email }}</td>
             <td>{{ profile.phone }}</td>
-            
+           
             <td><img src="{{ profile.image.url }}" alt="Profile Image"></td>
+           <td><button> <a href="{% url 'userprofile-update' profile.user.pk %}"> Update Info </a></button></td>
+            <td> <button><a href="{% url 'userprofile-delete' profile.user.pk %}"> Delete Profile </a></button> </td>
+            
         </tr>
         {% endfor %}
     </tbody>

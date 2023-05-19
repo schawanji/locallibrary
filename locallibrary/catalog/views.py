@@ -229,9 +229,10 @@ class UserProfile(LoginRequiredMixin,DetailView):
     template_name='catalog/userprofile_detail.html'    
 
 class UserProfileCreate(LoginRequiredMixin,CreateView):
-    model=models.UserProfile
+    model=models.User
     template_name='catalog/userprofile_create_form.html'
-    fields=['user','phone','image']
+    fields=['username','first_name','last_name','email']
+    success_url = reverse_lazy('members')
 
 
 class UserProfileUpdate(LoginRequiredMixin,UpdateView):
@@ -244,7 +245,7 @@ class UserProfileDelete(LoginRequiredMixin,DeleteView):
     model=models.User
     #form=forms.UserProfileForm
     template_name='catalog/userprofile_delete_form.html'
-    success_url = reverse_lazy('books')
+    success_url = reverse_lazy('userprofile-detail')
     context_object_name='userprofile'
       
     
