@@ -30,7 +30,8 @@
           <div class="dropdown-content">
             
               <a href="{% url 'logout' %}?next={{ request.path }}">Logout</a>
-              <a href="{% url 'member' user.pk %}">Manage account</a>
+              <a href="{% url 'userprofile-detail' user.pk %}">Manage account</a>
+              
             
           </div>
 
@@ -54,6 +55,9 @@
               <li><a href="{% url 'book-create' %}">Add New Book</a></li>
               <li><a href="{% url 'admin:index' %}">Admin Page</a></li>
               <li><a href="{% url 'members' %}">Members</a></li>
+             <li> <a href="{% url 'userprofile-create' user.pk %}">Create Profile</a></li>
+              <li> <a href="{% url 'userprofile-delete' userprofile.pk %}"> Delete Profile </a></button>
+
             </ul>
           </li>
           

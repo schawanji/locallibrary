@@ -10,5 +10,7 @@
     
   {% endif %}
 
-  <button> <a href="{% url 'userprofile-list' member.pk %}"> Update Info </a></button>
-{% endblock %}
+  <button> <a href="{% url 'userprofile-update' userprofile.pk %}"> Update Info </a></button>
+ 
+  
+  {% endblock %}

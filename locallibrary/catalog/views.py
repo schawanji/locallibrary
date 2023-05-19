@@ -222,17 +222,30 @@ class UserProfileView(LoginRequiredMixin,ListView):
     template_name='catalog/members.html'
     context_object_name='profiles'
 
+
+
 class UserProfile(LoginRequiredMixin,DetailView):
     model=models.UserProfile
-    template_name='catalog/member.html'
+    template_name='catalog/userprofile_detail.html'    
 
-
+class UserProfileCreate(LoginRequiredMixin,CreateView):
+    model=models.UserProfile
+    template_name='catalog/userprofile_create_form.html'
+    fields=['user','phone','image']
 
 
 class UserProfileUpdate(LoginRequiredMixin,UpdateView):
     model=models.UserProfile
     #form=forms.UserProfileForm
-    template_name='catalog/member_create_form.html'
-    fields=['phone','image']  
-    success_url=reverse_lazy('member')
+    template_name='catalog/userprofile_create_form.html'
+    fields=['phone','image']
+
+class UserProfileDelete(LoginRequiredMixin,DeleteView):
+    model=models.User
+    #form=forms.UserProfileForm
+    template_name='catalog/userprofile_delete_form.html'
+    success_url = reverse_lazy('books')
+    context_object_name='userprofile'
+      
+    
 

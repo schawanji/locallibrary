@@ -4,9 +4,9 @@
 #Database
 *.sqlite3
 
-
+db.sqlite3
 # Byte-compiled / optimized / DLL files
-__pycache__/
+catalog/__pycache__/
 *.py[cod]
 *$py.class
 
@@ -92,3 +92,5 @@ ENV/
 
 # Spyder project settings
 .spyderproject
+media/images/
+db.sqlite3

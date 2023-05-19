@@ -4,9 +4,10 @@ from django.urls import path
 urlpatterns=[
     path('',views.home,name='home'),
     path('members/',views.UserProfileView.as_view(), name='members'),
-    path('member/<int:pk>',views.UserProfile.as_view(), name='member'),
-    #path('member/create/<int:pk>',views.UserProfileCreate.as_view(), name='member-create'),
-    path('member/update/<int:pk>',views.UserProfileUpdate.as_view(), name='member-update'),
+    path('userprofile/<int:pk>',views.UserProfile.as_view(), name='userprofile-detail'),
+    path('userprofile/create/<int:pk>',views.UserProfileCreate.as_view(), name='userprofile-create'),
+    path('userprofile/update/<int:pk>',views.UserProfileUpdate.as_view(), name='userprofile-update'),
+    path('userprofile/delete/<int:pk>',views.UserProfileDelete.as_view(), name='userprofile-delete'),
    
     
     path('books/',views.BookList.as_view(),name='books'),
