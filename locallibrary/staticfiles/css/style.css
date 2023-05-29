@@ -28,11 +28,6 @@ a {text-decoration: none;
     color: #333;
     font-weight: 700;
   }
-  
-  a.active {
-    background-color: #333;
-    color: #fff;
-  }
 
 h1,
 h2 {
@@ -99,9 +94,6 @@ img {
 }
 
 
-
-
-
 .hero form {
   display: flex;
   justify-content: center;
@@ -129,8 +121,6 @@ img {
 
 /************************End Hero*********************************/
 
-
-
 .logo {
     list-style: none;
     display: flex;
@@ -151,7 +141,7 @@ img {
   padding: 0.1rem;
   margin: 0;
   background-color: #fff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  /*box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);*/
 }
 
 .logo .dropdown:hover .dropdown-menu {
@@ -171,12 +161,10 @@ img {
 
 }
 
-
 .book {
     
     margin: 2rem;
 }
-
 
 .general-content {
     text-align: center;
@@ -197,7 +185,6 @@ ul .book-genre {
 
     color: #000;
 }
-
 
 
 .pagination {
