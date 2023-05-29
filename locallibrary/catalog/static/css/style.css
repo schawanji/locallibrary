@@ -2,7 +2,7 @@ body {
   background-color: aquamarine;
   margin: 0 auto;
   width: 60%;
-  line-height: 1.6rem;
+  line-height: 1.6;
   font-size: 20px;
   box-sizing: border-box;
 }
@@ -11,7 +11,7 @@ ul {
   list-style: none;
   padding: 0;
   margin: 0;
-  line-height: 1.6rem;
+  line-height: 1.6;
 }
 
 li {
@@ -22,11 +22,6 @@ a {
   text-decoration: none;
   color: #333;
   font-weight: 700;
-}
-
-a.active {
-  background-color: #333;
-  color: #fff;
 }
 
 h1,
@@ -40,26 +35,27 @@ img {
   width: 20rem;
   height: 18vh;
 }
-    /* Styling for the pop-up window */
-    .cookie-notice {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background-color: #f8f8f8;
-      padding: 10px;
-      text-align: center;
-    }
 
-    /* Styling for the close button */
-    .cookie-notice button {
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      padding: 5px 10px;
-      font-size: 14px;
-      cursor: pointer;
-    }
+/* Styling for the pop-up window */
+.cookie-notice {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #f8f8f8;
+  padding: 1rem;
+  text-align: center;
+}
+
+/* Styling for the close button */
+.cookie-notice button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  font-size: 14px;
+  cursor: pointer;
+}
 
 /************************Nav*******************************/
 
@@ -132,7 +128,6 @@ nav li.open .manage-catalogue {
   width: 100%;
 }
 
-
 /************************End Hero*********************************/
 
 .logo {
@@ -145,10 +140,20 @@ nav li.open .manage-catalogue {
   position: relative;
 }
 
+.menu a,
+.dropdown .dropbtn {
+  font-size: 0.9rem;
+  padding: 0.5rem;
+}
 
-.menu a:hover, .dropdown:hover .dropbtn {
+.dropdown .dropbtn {
+  font-size: 1rem;
+  padding: 0.5rem;
+}
+
+.menu a:hover,
+.dropdown:hover .dropbtn {
   background-color: #3e8e41;
-  padding: 1rem;
 }
 
 /* The container <div> - needed to position the dropdown content */
@@ -162,8 +167,7 @@ nav li.open .manage-catalogue {
   display: none;
   position: absolute;
   background-color: #f1f1f1;
-  min-width: 120px;
-  box-shadow: 1rem rgba(0,0,0,0.2);
+  font-size: 1rem;
   z-index: 1;
 }
 
@@ -174,15 +178,18 @@ nav li.open .manage-catalogue {
   display: block;
 }
 
-
 /* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #9b9999;}
+.dropdown-content a:hover {
+  background-color: #9b9999;
+}
 
 /* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {display: block;}
-
+.dropdown:hover .dropdown-content {
+  display: block;
+}
 
 /*************************************************************************/
+
 .books-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -270,7 +277,6 @@ ul .book-genre {
   justify-content: space-around;
   margin-bottom: 0.3rem;
   border-radius: 1%;
-  border: solid gray 1px;
   padding: 1rem;
 }
 
@@ -366,11 +372,8 @@ input[type="hidden"] {
   display: none;
 }
 
-
-
-
- /* Footer */
- footer {
+/* Footer */
+footer {
   padding: 1rem;
   text-align: center;
 }
@@ -412,7 +415,6 @@ input[type="hidden"] {
   text-decoration: underline;
 }
 
-
 /* Styles for mobile devices */
 @media only screen and (max-width: 780px) {
 
@@ -442,13 +444,7 @@ input[type="hidden"] {
     padding: 6px 12px;
     margin: 2px 1px;
   }
-
 }
-
-
-
-
-
 
 @media only screen and (max-width: 480px) {
   /* CSS rules for mobile devices */
@@ -463,12 +459,6 @@ input[type="hidden"] {
   h2 {
     font-size: 1rem;
   }
-  img {
-    max-width: 70%;
-    max-height: 80%;
-    width: 150px;
-    height: 18vh;
-  }
 
   /* Navbar */
   .logo {
@@ -482,7 +472,7 @@ input[type="hidden"] {
     display: none;
     line-height: 1rem;
   }
- 
+
   .navbar .menu-icon {
     display: block;
     color: #333;
@@ -490,19 +480,30 @@ input[type="hidden"] {
     cursor: pointer;
   }
 
-  .menu.responsive {position: relative;}
+  .menu.responsive {
+    position: relative;
+  }
+
   .menu.menu-icon.responsive {
     position: absolute;
     right: 0;
     top: 0;
   }
+
   .menu.responsive a {
     float: none;
     display: block;
     text-align: left;
   }
-  .menu.responsive .dropdown {float: none;}
-  .menu.responsive .dropdown-content {position: relative;}
+
+  .menu.responsive .dropdown {
+    float: none;
+  }
+
+  .menu.responsive .dropdown-content {
+    position: relative;
+  }
+
   .menu.responsive .dropdown .dropbtn {
     display: block;
     width: 100%;
@@ -513,8 +514,6 @@ input[type="hidden"] {
     display: block;
   }
 
-
-
   /* Books List */
   .books-list {
     grid-template-columns: 1fr;
@@ -522,31 +521,23 @@ input[type="hidden"] {
   }
 
   .book {
-   
     display: flex;
     text-align: start;
- 
     gap: 0.7rem;
   }
 
   /* Forms */
-  form {
-    padding: 0 1rem;
-  }
-
-  label,
   input[type="text"],
-  input[type="password"],
-  textarea {
-    font-size: 0.9rem;
+  input[type="password"] {
+    width: 100%;
   }
 
- .button {
-    font-size: 8px;
-    padding: 6px 12px;
-    margin: 2px 1px;
+  input[type="submit"] {
+    width: 100%;
   }
 
-
+  /* Footer */
+  .footer-links li {
+    padding: 0.5rem;
+  }
 }
-
